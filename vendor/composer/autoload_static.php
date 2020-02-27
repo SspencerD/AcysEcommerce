@@ -24,6 +24,7 @@ class ComposerStaticInit4131435b92a88b3e90b1ce5f9fa2d666
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         'b6ec61354e97f32c0ae683041c78392a' => __DIR__ . '/..' . '/scrivo/highlight.php/HighlightUtilities/functions.php',
         'ed962a97bd972bc82007176b647d4e36' => __DIR__ . '/..' . '/facade/ignition/src/helpers.php',
+        'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -135,7 +136,9 @@ class ComposerStaticInit4131435b92a88b3e90b1ce5f9fa2d666
         'C' => 
         array (
             'Cron\\' => 5,
+            'Collective\\Html\\' => 16,
             'Carbon\\' => 7,
+            'Caffeinated\\Shinobi\\' => 20,
         ),
         'A' => 
         array (
@@ -378,9 +381,17 @@ class ComposerStaticInit4131435b92a88b3e90b1ce5f9fa2d666
         array (
             0 => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron',
         ),
+        'Collective\\Html\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/laravelcollective/html/src',
+        ),
         'Carbon\\' => 
         array (
             0 => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon',
+        ),
+        'Caffeinated\\Shinobi\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/caffeinated/shinobi/src',
         ),
         'App\\' => 
         array (
@@ -410,15 +421,20 @@ class ComposerStaticInit4131435b92a88b3e90b1ce5f9fa2d666
     );
 
     public static $classMap = array (
+        'App\\Category' => __DIR__ . '/../..' . '/app/Category.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\Admin\\DashboardController' => __DIR__ . '/../..' . '/app/Http/Controllers/Admin/DashboardController.php',
         'App\\Http\\Controllers\\Auth\\ConfirmPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ConfirmPasswordController.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
+        'App\\Http\\Controllers\\CategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/CategoryController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
+        'App\\Http\\Controllers\\ProductController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProductController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\CheckForMaintenanceMode' => __DIR__ . '/../..' . '/app/Http/Middleware/CheckForMaintenanceMode.php',
@@ -427,12 +443,32 @@ class ComposerStaticInit4131435b92a88b3e90b1ce5f9fa2d666
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Product' => __DIR__ . '/../..' . '/app/Product.php',
+        'App\\ProductImage' => __DIR__ . '/../..' . '/app/ProductImage.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
+        'Caffeinated\\Shinobi\\Concerns\\HasPermissions' => __DIR__ . '/..' . '/caffeinated/shinobi/src/Concerns/HasPermissions.php',
+        'Caffeinated\\Shinobi\\Concerns\\HasRoles' => __DIR__ . '/..' . '/caffeinated/shinobi/src/Concerns/HasRoles.php',
+        'Caffeinated\\Shinobi\\Concerns\\HasRolesAndPermissions' => __DIR__ . '/..' . '/caffeinated/shinobi/src/Concerns/HasRolesAndPermissions.php',
+        'Caffeinated\\Shinobi\\Concerns\\RefreshesPermissionCache' => __DIR__ . '/..' . '/caffeinated/shinobi/src/Concerns/RefreshesPermissionCache.php',
+        'Caffeinated\\Shinobi\\Contracts\\Permission' => __DIR__ . '/..' . '/caffeinated/shinobi/src/Contracts/Permission.php',
+        'Caffeinated\\Shinobi\\Contracts\\Role' => __DIR__ . '/..' . '/caffeinated/shinobi/src/Contracts/Role.php',
+        'Caffeinated\\Shinobi\\Exceptions\\PermissionNotFoundException' => __DIR__ . '/..' . '/caffeinated/shinobi/src/Exceptions/PermissionNotFoundException.php',
+        'Caffeinated\\Shinobi\\Facades\\Shinobi' => __DIR__ . '/..' . '/caffeinated/shinobi/src/Facades/Shinobi.php',
+        'Caffeinated\\Shinobi\\Middleware\\UserHasAllRoles' => __DIR__ . '/..' . '/caffeinated/shinobi/src/Middleware/UserHasAllRoles.php',
+        'Caffeinated\\Shinobi\\Middleware\\UserHasAnyRole' => __DIR__ . '/..' . '/caffeinated/shinobi/src/Middleware/UserHasAnyRole.php',
+        'Caffeinated\\Shinobi\\Middleware\\UserHasRole' => __DIR__ . '/..' . '/caffeinated/shinobi/src/Middleware/UserHasRole.php',
+        'Caffeinated\\Shinobi\\Models\\Permission' => __DIR__ . '/..' . '/caffeinated/shinobi/src/Models/Permission.php',
+        'Caffeinated\\Shinobi\\Models\\Role' => __DIR__ . '/..' . '/caffeinated/shinobi/src/Models/Role.php',
+        'Caffeinated\\Shinobi\\Shinobi' => __DIR__ . '/..' . '/caffeinated/shinobi/src/Shinobi.php',
+        'Caffeinated\\Shinobi\\ShinobiServiceProvider' => __DIR__ . '/..' . '/caffeinated/shinobi/src/ShinobiServiceProvider.php',
+        'Caffeinated\\Shinobi\\Tactics\\AssignRoleTo' => __DIR__ . '/..' . '/caffeinated/shinobi/src/Tactics/AssignRoleTo.php',
+        'Caffeinated\\Shinobi\\Tactics\\GivePermissionTo' => __DIR__ . '/..' . '/caffeinated/shinobi/src/Tactics/GivePermissionTo.php',
+        'Caffeinated\\Shinobi\\Tactics\\RevokePermissionsFrom' => __DIR__ . '/..' . '/caffeinated/shinobi/src/Tactics/RevokePermissionFrom.php',
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',
         'Carbon\\CarbonImmutable' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonImmutable.php',
         'Carbon\\CarbonInterface' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonInterface.php',
@@ -470,6 +506,14 @@ class ComposerStaticInit4131435b92a88b3e90b1ce5f9fa2d666
         'Carbon\\Traits\\Units' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Units.php',
         'Carbon\\Traits\\Week' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Traits/Week.php',
         'Carbon\\Translator' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Translator.php',
+        'CategoriesTableSeeder' => __DIR__ . '/../..' . '/database/seeds/CategoriesTableSeeder.php',
+        'Collective\\Html\\Componentable' => __DIR__ . '/..' . '/laravelcollective/html/src/Componentable.php',
+        'Collective\\Html\\Eloquent\\FormAccessible' => __DIR__ . '/..' . '/laravelcollective/html/src/Eloquent/FormAccessible.php',
+        'Collective\\Html\\FormBuilder' => __DIR__ . '/..' . '/laravelcollective/html/src/FormBuilder.php',
+        'Collective\\Html\\FormFacade' => __DIR__ . '/..' . '/laravelcollective/html/src/FormFacade.php',
+        'Collective\\Html\\HtmlBuilder' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlBuilder.php',
+        'Collective\\Html\\HtmlFacade' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlFacade.php',
+        'Collective\\Html\\HtmlServiceProvider' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlServiceProvider.php',
         'Cron\\AbstractField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/AbstractField.php',
         'Cron\\CronExpression' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/CronExpression.php',
         'Cron\\DayOfMonthField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/DayOfMonthField.php',
@@ -2932,6 +2976,7 @@ class ComposerStaticInit4131435b92a88b3e90b1ce5f9fa2d666
         'PHP_Token_XOR_EQUAL' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_YIELD' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_YIELD_FROM' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
+        'PermissionsTableSeeder' => __DIR__ . '/../..' . '/database/seeds/PermissionsTableSeeder.php',
         'PharIo\\Manifest\\Application' => __DIR__ . '/..' . '/phar-io/manifest/src/values/Application.php',
         'PharIo\\Manifest\\ApplicationName' => __DIR__ . '/..' . '/phar-io/manifest/src/values/ApplicationName.php',
         'PharIo\\Manifest\\Author' => __DIR__ . '/..' . '/phar-io/manifest/src/values/Author.php',
@@ -3225,6 +3270,8 @@ class ComposerStaticInit4131435b92a88b3e90b1ce5f9fa2d666
         'PhpParser\\Parser\\Tokens' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Parser/Tokens.php',
         'PhpParser\\PrettyPrinterAbstract' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/PrettyPrinterAbstract.php',
         'PhpParser\\PrettyPrinter\\Standard' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/PrettyPrinter/Standard.php',
+        'ProductImageSeeder' => __DIR__ . '/../..' . '/database/seeds/ProductImageSeeder.php',
+        'ProductsTableSeeder' => __DIR__ . '/../..' . '/database/seeds/ProductsTableSeeder.php',
         'Prophecy\\Argument' => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy/Argument.php',
         'Prophecy\\Argument\\ArgumentsWildcard' => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy/Argument/ArgumentsWildcard.php',
         'Prophecy\\Argument\\Token\\AnyValueToken' => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy/Argument/Token/AnyValueToken.php',
@@ -4368,6 +4415,7 @@ class ComposerStaticInit4131435b92a88b3e90b1ce5f9fa2d666
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Property\\Property' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Property/Property.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Processor' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Processor.php',
         'TijsVerkoyen\\CssToInlineStyles\\Css\\Rule\\Rule' => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src/Css/Rule/Rule.php',
+        'UsersTableSeeder' => __DIR__ . '/../..' . '/database/seeds/UsersTableSeeder.php',
         'Webmozart\\Assert\\Assert' => __DIR__ . '/..' . '/webmozart/assert/src/Assert.php',
         'Whoops\\Exception\\ErrorException' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Exception/ErrorException.php',
         'Whoops\\Exception\\Formatter' => __DIR__ . '/..' . '/filp/whoops/src/Whoops/Exception/Formatter.php',
