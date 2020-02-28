@@ -28,91 +28,91 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('roles/store', 'RoleController@store')
         ->name('roles.store')
-        ->middleware('has.roles:roles.create');
+        ->middleware('can:roles:roles.create');
 
     Route::get('roles', 'RoleController@index')
         ->name('roles.index')
-        ->middleware('has.roles:roles.index');
+        ->middleware('can:roles:roles.index');
 
     Route::get('roles/create', 'RoleController@create')
         ->name('roles.create')
-        ->middleware('has.roles:roles.create');
+        ->middleware('can:roles:roles.create');
 
     Route::put('roles/{role}', 'RoleController@update')
         ->name('roles.update')
-        ->middleware('has.roles:roles.edit');
+        ->middleware('can:roles:roles.edit');
 
     Route::get('roles/{role}', 'RoleController@show')
         ->name('roles.show')
-        ->middleware('has.roles:roles.show');
+        ->middleware('can:roles:roles.show');
 
     Route::delete('roles/{role}', 'RoleController@destroy')
         ->name('roles.destroy')
-        ->middleware('has.roles:roles.destroy');
+        ->middleware('can:roles:roles.destroy');
 
     Route::get('roles/{role}/edit', 'RoleController@edit')
         ->name('roles.edit')
-        ->middleware('has.roles:roles.edit');
+        ->middleware('can:roles:roles.edit');
 
     //Products
     Route::post('products/store', 'ProductController@store')
         ->name('products.store')
-        ->middleware('has.roles:products.create');
+        ->middleware('can:roles:products.create');
 
     Route::get('products', 'ProductController@index')
         ->name('products.index')
-        ->middleware('has.roles:products.index');
+        ->middleware('can:roles:products.index');
 
     Route::get('products/create', 'ProductController@create')
         ->name('products.create')
-        ->middleware('has.roles:products.create');
+        ->middleware('can:roles:products.create');
 
     Route::put('products/{role}', 'ProductController@update')
         ->name('products.update')
-        ->middleware('has.roles:products.edit');
+        ->middleware('can:roles:products.edit');
 
     Route::get('products/{role}', 'ProductController@show')
         ->name('products.show')
-        ->middleware('has.roles:products.show');
+        ->middleware('can:roles:products.show');
 
     Route::delete('products/{role}', 'ProductController@destroy')
         ->name('products.destroy')
-        ->middleware('has.roles:products.destroy');
+        ->middleware('can:roles:products.destroy');
 
     Route::get('products/{role}/edit', 'ProductController@edit')
         ->name('products.edit')
-        ->middleware('has.roles:roles.edit');
+        ->middleware('can:roles:roles.edit');
 
 
     //Categories
 
     Route::post('categories/store', 'CategoryController@store')
         ->name('categories.store')
-        ->middleware('has.roles:categories.create');
+        ->middleware('can:roles:categories.create');
 
     Route::get('categories', 'CategoryController@index')
         ->name('categories.index')
-        ->middleware('has.roles:categories.index');
+        ->middleware('can:roles:categories.index');
 
     Route::get('categories/create', 'CategoryController@create')
         ->name('categories.create')
-        ->middleware('has.roles:categories.create');
+        ->middleware('can:roles:categories.create');
 
     Route::put('categories/{role}', 'CategoryController@update')
         ->name('categories.update')
-        ->middleware('has.roles:categories.edit');
+        ->middleware('can:roles:categories.edit');
 
     Route::get('categories/{role}', 'CategoryController@show')
         ->name('categories.show')
-        ->middleware('has.roles:categories.show');
+        ->middleware('can:roles:categories.show');
 
     Route::delete('categories/{role}', 'CategoryController@destroy')
         ->name('categories.destroy')
-        ->middleware('has.roles:categories.destroy');
+        ->middleware('can:roles:categories.destroy');
 
     Route::get('categories/{role}/edit', 'CategoryController@edit')
         ->name('categories.edit')
-        ->middleware('has.roles:roles.edit');
+        ->middleware('can:roles:roles.edit');
 
 
     //Users
