@@ -67,19 +67,19 @@ Route::middleware(['auth'])->group(function () {
         ->name('products.create')
         ->middleware('can:roles:products.create');
 
-    Route::put('products/{role}', 'ProductController@update')
+    Route::put('products/{product}', 'ProductController@update')
         ->name('products.update')
         ->middleware('can:roles:products.edit');
 
-    Route::get('products/{role}', 'ProductController@show')
+    Route::get('products/{product}', 'ProductController@show')
         ->name('products.show')
         ->middleware('can:roles:products.show');
 
-    Route::delete('products/{role}', 'ProductController@destroy')
+    Route::delete('products/{product}', 'ProductController@destroy')
         ->name('products.destroy')
         ->middleware('can:roles:products.destroy');
 
-    Route::get('products/{role}/edit', 'ProductController@edit')
+    Route::get('products/{product}/edit', 'ProductController@edit')
         ->name('products.edit')
         ->middleware('can:roles:roles.edit');
 
@@ -98,19 +98,19 @@ Route::middleware(['auth'])->group(function () {
         ->name('categories.create')
         ->middleware('can:roles:categories.create');
 
-    Route::put('categories/{role}', 'CategoryController@update')
+    Route::put('categories/{categories}', 'CategoryController@update')
         ->name('categories.update')
         ->middleware('can:roles:categories.edit');
 
-    Route::get('categories/{role}', 'CategoryController@show')
+    Route::get('categories/{categories}', 'CategoryController@show')
         ->name('categories.show')
         ->middleware('can:roles:categories.show');
 
-    Route::delete('categories/{role}', 'CategoryController@destroy')
+    Route::delete('categories/{categories}', 'CategoryController@destroy')
         ->name('categories.destroy')
         ->middleware('can:roles:categories.destroy');
 
-    Route::get('categories/{role}/edit', 'CategoryController@edit')
+    Route::get('categories/{categories}/edit', 'CategoryController@edit')
         ->name('categories.edit')
         ->middleware('can:roles:roles.edit');
 
@@ -121,19 +121,19 @@ Route::middleware(['auth'])->group(function () {
         ->name('users.index')
         ->middleware('has.roles:users.index');
 
-    Route::put('users/{role}', 'UserController@update')
+    Route::put('users/{users}', 'UserController@update')
         ->name('users.update')
         ->middleware('has.roles:users.edit');
 
-    Route::get('users/{role}', 'UserController@show')
+    Route::get('users/{users}', 'UserController@show')
         ->name('users.show')
         ->middleware('has.roles:users.show');
 
-    Route::delete('users/{role}', 'UserController@destroy')
+    Route::delete('users/{users}', 'UserController@destroy')
         ->name('users.destroy')
         ->middleware('has.roles:users.destroy');
 
-    Route::get('users/{role}/edit', 'UserController@edit')
+    Route::get('users/{users}/edit', 'UserController@edit')
         ->name('users.edit')
         ->middleware('has.roles:roles.edit');
 });

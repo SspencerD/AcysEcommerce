@@ -1,6 +1,6 @@
 @extends('layouts.dashboard');
 
-@section('title');
+@section('title','Dashboard |' .config('app.name'))
 
 @section('content');
 
@@ -62,6 +62,10 @@
                                                 class="far fa-eye"></i>
                                             Ver</a>
                                         @endcan
+                                        <a href="{{ route('products.show', $product->id) }}"
+                                            class="dropdown-item btn btn-primary" type="button"><i
+                                                class="far fa-image"></i>
+                                            Imagenes</a>
                                         @can('products.edit')
                                         <a href="{{ route('products.edit', $product->id) }}"
                                             class="dropdown-item btn btn-warning" type="button"><i
