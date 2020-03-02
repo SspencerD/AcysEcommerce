@@ -62,7 +62,7 @@
                                                 class="far fa-eye"></i>
                                             Ver</a>
                                         @endcan
-                                        <a href="{{ route('products.show', $product->id) }}"
+                                        <a href="{{ route('products.images', $product->id) }}"
                                             class="dropdown-item btn btn-primary" type="button"><i
                                                 class="far fa-image"></i>
                                             Imagenes</a>
@@ -73,7 +73,7 @@
                                             Editar</a>
                                         @endcan
                                         @can('products.destroy')
-                                        <form action="" {{ route('products.destroy', $product->id) }}"" method="post">
+                                        <form action=" {{ route('products.destroy', $product->id) }}" method="post">
                                         </form>
                                         <button class="dropdown-item btn btn-danger" type="button"><i
                                                 class="fas fa-trash"></i>

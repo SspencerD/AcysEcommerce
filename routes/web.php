@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -53,6 +54,19 @@ Route::middleware(['auth'])->group(function () {
     Route::get('roles/{role}/edit', 'RoleController@edit')
         ->name('roles.edit')
         ->middleware('can:roles:roles.edit');
+
+    //Imagenes de producto
+    Route::get('products/{product}/images', 'ImageController@index')
+        ->name('products.images')->middleware('can:roles:products.images');
+
+        Route::post('products/{product}/images', 'ImageController@store')
+        ->name('products.images.store')->middleware('can:roles:products.images.store');
+
+        Route::delete('products/{product}/images/', 'ImageController@destroy')
+        ->name('products.images.destroy')->middleware('can:roles:products.images.destroy');
+
+        Route::get('products/{product}/images/select/{images}','ImageController@select')
+        ->name('products.images.select')->middleware('can:roles:products.images.select');
 
     //Products
     Route::post('products/store', 'ProductController@store')
