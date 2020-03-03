@@ -62,10 +62,12 @@
                                                 class="far fa-eye"></i>
                                             Ver</a>
                                         @endcan
+                                        @can('products.images')
                                         <a href="{{ route('products.images', $product->id) }}"
                                             class="dropdown-item btn btn-primary" type="button"><i
                                                 class="far fa-image"></i>
                                             Imagenes</a>
+                                        @endcan
                                         @can('products.edit')
                                         <a href="{{ route('products.edit', $product->id) }}"
                                             class="dropdown-item btn btn-warning" type="button"><i
@@ -85,7 +87,10 @@
                         @endforeach
                         </tbody>
                 </table>
-                {{$products->links() }}
+                <div class="align-content-md-center">
+                    {{$products->links() }}
+                </div>
+
             </div>
         </div>
     </div>

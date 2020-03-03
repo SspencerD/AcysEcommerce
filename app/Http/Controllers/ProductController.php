@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Product;
+use App\ProductImage;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -43,7 +44,7 @@ class ProductController extends Controller
         $product = Product::create($request->all());
 
         return redirect()->route('products.edit', $product->id)
-            ->with('info', 'Producto guardado con exito');
+            ->with('message', 'Producto guardado con exito');
     }
 
     /**
@@ -55,7 +56,8 @@ class ProductController extends Controller
     public function show(Product $product)
 
     {
-        return view('products.show')->with(compact('product'));
+        $images = $product->images()->get();
+        return view('products.show')->with(compact('product', 'images'));
     }
 
     /**
@@ -80,7 +82,7 @@ class ProductController extends Controller
     {
         $product->update($request->all());
         return redirect()->route('products.edit', $product->id)
-            ->with('info', 'Producto Actualizado con exito');
+            ->with('message', 'Producto Actualizado con exito');
     }
 
     /**
@@ -93,6 +95,6 @@ class ProductController extends Controller
     {
         $product->delete();
 
-        return back()->with('info', 'Producto borrado con exito');
+        return back()->with('message', 'Producto borrado con exito');
     }
 }

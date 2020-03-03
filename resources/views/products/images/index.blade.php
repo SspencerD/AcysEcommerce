@@ -4,15 +4,32 @@
 
 @section('content')
 
-@if(session('info'))
-<div class="alert alert-success">
-    {{ session('info') }}
-</div>
-@endif
+@if(Session::has('message'))
+<script>
+    var type = "{{ Session::get('alert-type', 'info') }}";
+    switch(type){
+    case 'info':
+    toastr.info("{{ Session::get('message') }}");
+    break;
 
+    case 'warning':
+    toastr.warning("{{ Session::get('message') }}");
+    break;
+
+    case 'success':
+    toastr.success("{{ Session::get('message') }}");
+    break;
+
+    case 'error':
+    toastr.error("{{ Session::get('message') }}");
+    break;
+    }
+</script>
+@endif
 <form method="POST" action="" enctype="multipart/form-data">
+    @csrf
     <div class="form-group">
-        <label for="photo">Subir</label>
+        <label for="photo">{{$product->name }}</label>
         <input type="file" name="photo" class="form-control-file" id="photo" required>
     </div>
     <div class="row">
@@ -26,7 +43,7 @@
     <br>
     <div class="row">
         <div class="col-md-6">
-            <a href="{{ '/admin/products'}}" type="button" aria-haspopup="true" aria-expanded="false"
+            <a href="{{ url('/products') }}" type="button" aria-haspopup="true" aria-expanded="false"
                 class="btn btn-danger">
                 <i class="fas fa-arrow-alt-circle-left"></i>
                 Volver al listado
