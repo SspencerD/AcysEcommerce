@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class CategoryController extends Controller
 {
@@ -26,18 +28,27 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('categories.create');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $category = Category::create($request->all());
+
+        if ($request->hasfile('image')) {
+            $file = $request->file('image');
+            $path = public_path() . '/images/categories';
+            $fileName = uniqid() . '-' . $file->getClientOriginalName();
+            $moved = $file->move($path, $fileName);
+
+            //se cactualiza registro en la tabla product_images
+            if ($moved) {
+                $category->image = $fileName;
+                $category->save(); //se produce un update
+            }
+        }
+
+        return redirect()->route('categories.index')
+            ->with('success', 'Categoria creada con exito!');
     }
 
     /**
@@ -48,7 +59,9 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return view('categories.show')->compact('category');
+        $products = $category->products()->paginate(10);
+
+        return view('categories.show', compact('category', 'products'));
     }
 
     /**
@@ -59,7 +72,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('categories.edit', compact('category'));
     }
 
     /**
@@ -71,7 +84,27 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $category->update($request->all());
+
+        if ($request->hasfile('image')) {
+            $file = $request->file('image');
+            $path = public_path() . '/images/categories';
+            $fileName = uniqid() . '-' . $file->getClientOriginalName();
+            $moved = $file->move($path, $fileName);
+
+            //se cactualiza registro en la tabla product_images
+            if ($moved) {
+                $previousPath = $path . '/' . $category->image;
+                $category->image = $fileName;
+                $saved = $category->save(); //se produce un update
+
+                if ($saved)
+                    File::delete($previousPath);
+            }
+        }
+
+        return redirect()->route('categories.edit', $category->id)
+            ->with('success', 'Categoria Actualizada!');
     }
 
     /**
@@ -82,6 +115,6 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
     }
 }

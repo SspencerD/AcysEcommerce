@@ -42,8 +42,9 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $product = Product::create($request->all());
+        $product->save();
 
-        return redirect()->route('products.edit', $product->id)
+        return redirect()->route('products.index')
             ->with('message', 'Producto guardado con exito');
     }
 
@@ -67,8 +68,10 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Product $product)
+
     {
-        return view('products.edit', compact($product));
+        $categories = Category::all();
+        return view('products.edit', compact('product', 'categories'));
     }
 
     /**
@@ -81,8 +84,10 @@ class ProductController extends Controller
     public function update(Request $request, Product $product)
     {
         $product->update($request->all());
-        return redirect()->route('products.edit', $product->id)
-            ->with('message', 'Producto Actualizado con exito');
+        $product->save();
+
+        return redirect()->route('products.index')
+            ->with('success', 'Producto Actualizado con exito');
     }
 
     /**

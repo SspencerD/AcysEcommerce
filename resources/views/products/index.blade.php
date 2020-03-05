@@ -2,7 +2,7 @@
 
 @section('title','Dashboard |' .config('app.name'))
 
-@section('content');
+@section('content')
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
@@ -11,7 +11,7 @@
     <h1 class="h3 mb-2 text-gray-800">Listado de producto</h1>
     @can('products.create')
     <a href="{{ route('products.create')  }} " class=" btn btn-success bt-lg pull-right"><i
-            class="far fa-plus-square">&nbsp;</i>Crear</a>
+            class="far fa-plus-square"></i> Crear</a>
     @endcan
     <!-- DataTales Example -->
     <div class="card shadow mb-4">

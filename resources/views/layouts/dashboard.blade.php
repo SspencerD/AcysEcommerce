@@ -11,9 +11,9 @@
 
     <title>@yield('title',config('app.name',))</title>
 
+    {{--  CSS toastr  --}}
+    <link rel="stylesheet" href="{{ url('https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css')}}">
     <!-- Custom fonts for this template-->
-    <link rel="stylesheet"
-        href="{{ url('https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css')}}">
     <link href="{{ asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{ url('https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"')}}
         rel=" stylesheet">
@@ -417,10 +417,10 @@
             </div>
 
             <!-- Bootstrap core JavaScript-->
-            <script src="{{asset('vendor/jquery/jquery.min.js')}}"></script>
+            <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
             <script src="{{asset('vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-            <script src="{{ url('https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js') }}">
-            </script>
+
 
             <!-- Core plugin JavaScript-->
             <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js')}}"></script>
@@ -434,6 +434,11 @@
             <!-- Page level custom scripts -->
             <script src="{{ asset('js/demo/chart-area-demo.js')}}"></script>
             <script src="{{ asset('js/demo/chart-pie-demo.js')}}"></script>
+            {{--  Toastr  --}}
+            <script src="{{ url('https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js') }}">
+            </script>
+
+
 
 </body>
 
