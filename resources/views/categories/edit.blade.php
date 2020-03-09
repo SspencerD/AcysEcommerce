@@ -12,8 +12,8 @@
     </div>
     <div class="card shadow mb-4">
         <div class="card-body">
-            <form method="POST" action="{{route('categories.store') }}" enctype="multipart/form-data">
-                @csrf
+            <form method="POST" action="{{route('categories.update',$category->id )}}" enctype="multipart/form-data">
+                @csrf @method('PUT')
                 <div class="form-row">
                     <div class="col-md-3">
                         <div class="position-relative form-group">
@@ -47,10 +47,7 @@
                 </div>
                 <div class="row">
                     <div class=" form-group col-sm-4">
-                        <button class="mb-1 mr-1 btn btn-warning">Editar categoria</button>
-                    </div>
-
-                    <div class="form-group col-sm-4">
+                        <button class="mb-1 mr-1 btn btn-warning" type="submit">Editar categoria</button>
                         <a href="{{ route('categories.index') }}" class="mb-2 mr-2 btn btn-danger">Cancelar</a>
                     </div>
                 </div>

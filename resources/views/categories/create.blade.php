@@ -38,7 +38,7 @@
                         </div>
                     </div>
                 </div>
-                <button class="mb-2 mr-2 btn btn-success">Registrar categoria</button>
+                <button class="mb-2 mr-2 btn btn-success" type="submit">Registrar categoria</button>
             </form>
             <a href="{{ route('categories.index') }}" class="mb-2 mr-2 btn btn-danger">Cancelar</a>
         </div>

@@ -45,15 +45,8 @@ class ProductController extends Controller
         $product->save();
 
         return redirect()->route('products.index')
-            ->with('message', 'Producto guardado con exito');
+            ->with('success', 'Producto guardado con exito');
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
-     */
     public function show(Product $product)
 
     {
@@ -61,12 +54,6 @@ class ProductController extends Controller
         return view('products.show')->with(compact('product', 'images'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Product $product)
 
     {
@@ -74,32 +61,17 @@ class ProductController extends Controller
         return view('products.edit', compact('product', 'categories'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Product $product)
     {
         $product->update($request->all());
-        $product->save();
 
         return redirect()->route('products.index')
-            ->with('success', 'Producto Actualizado con exito');
+            ->with('warning', 'Producto Actualizado con exito!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Product  $product
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Product $product)
     {
         $product->delete();
-
-        return back()->with('message', 'Producto borrado con exito');
+        return back()->with('info', 'Producto borrado con exito');
     }
 }

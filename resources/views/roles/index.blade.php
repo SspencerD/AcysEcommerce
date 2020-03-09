@@ -56,11 +56,11 @@
                                         @endcan
                                         @can('roles.destroy')
                                         <form action=" {{ route('roles.destroy', $rol->id) }}" method="post">
-                                        </form>
-                                        <button class="dropdown-item btn btn-danger" type="button"><i
-                                                class="fas fa-trash"></i>
-                                            Borrar</button>
-                                        @endcan
+                                            @csrf @method('DELETE')
+                                            <button class="dropdown-item btn btn-danger" type="submit"><i
+                                                    class="fas fa-trash"></i>
+                                                Borrar</button>
+                                            @endcan
                                     </div>
                             </th>
                         </tr>

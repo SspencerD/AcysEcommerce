@@ -7,6 +7,8 @@
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
+    @include('includes.flash-messages')
+
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Listado de usuarios</h1>
     @can('products.create')
@@ -63,11 +65,12 @@
                                             Editar</a>
                                         @endcan
                                         @can('users.destroy')
-                                        <form action=" {{ route('users.destroy', $user->id) }}" method="post">
+                                        <form action=" {{ route('users.destroy', $user->id) }}" method="POST">
+                                            @csrf @method('DELETE')
+                                            <button class="dropdown-item btn btn-danger" type="submit"><i
+                                                    class="fas fa-trash"></i>
+                                                Borrar</button>
                                         </form>
-                                        <button class="dropdown-item btn btn-danger" type="button"><i
-                                                class="fas fa-trash"></i>
-                                            Borrar</button>
                                         @endcan
                                     </div>
                             </th>

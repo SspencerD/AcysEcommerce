@@ -59,11 +59,14 @@
                                             Editar</a>
                                         @endcan
                                         @can('categories.destroy')
-                                        <form action=" {{ route('categories.destroy', $category->id) }}" method="post">
+                                        <form action=" {{ route('categories.destroy', $category->id) }}" method="POST">
+                                            @method('DELETE')
+                                            @csrf
+
+                                            <button class="dropdown-item btn btn-danger" type="submit"><i
+                                                    class="fas fa-trash"></i>
+                                                Borrar</button>
                                         </form>
-                                        <button class="dropdown-item btn btn-danger" type="button"><i
-                                                class="fas fa-trash"></i>
-                                            Borrar</button>
                                         @endcan
                                     </div>
                             </th>

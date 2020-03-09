@@ -135,19 +135,19 @@ Route::middleware(['auth'])->group(function () {
         ->name('users.index')
         ->middleware('can:roles:users.index');
 
-    Route::put('users/{users}', 'UserController@update')
+    Route::put('users/{user}', 'UserController@update')
         ->name('users.update')
         ->middleware('can:roles:users.edit');
 
-    Route::get('users/{users}', 'UserController@show')
+    Route::get('users/{user}', 'UserController@show')
         ->name('users.show')
         ->middleware('can:roles:users.show');
 
-    Route::delete('users/{users}', 'UserController@destroy')
+    Route::delete('users/{user}', 'UserController@destroy')
         ->name('users.destroy')
         ->middleware('can:roles:users.destroy');
 
-    Route::get('users/{users}/edit', 'UserController@edit')
+    Route::get('users/{user}/edit', 'UserController@edit')
         ->name('users.edit')
         ->middleware('can:roles:users.edit');
 });
