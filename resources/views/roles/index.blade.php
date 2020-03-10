@@ -9,8 +9,8 @@
 
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Listado de roles</h1>
-    @can('products.create')
-    <a href="{{ route('products.create')  }} " class=" btn btn-success bt-lg pull-right"><i
+    @can('roles.create')
+    <a href="{{ route('roles.create')  }} " class=" btn btn-success bt-lg pull-right"><i
             class="far fa-plus-square">&nbsp;</i>Crear</a>
     @endcan
     <!-- DataTales Example -->
