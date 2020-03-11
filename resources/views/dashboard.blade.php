@@ -1,3 +1,5 @@
+@can('dashboard.dashboard')
+
 @extends('layouts.dashboard')
 
 @section('title','Dashboard |' .config('app.name'))
@@ -308,7 +310,5 @@
 <!-- /.container-fluid -->
 
 </div>
-
-
-
 @endsection
+@endcan

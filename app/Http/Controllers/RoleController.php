@@ -8,11 +8,14 @@ use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('can:roles:roles.create')->only(['create', 'store']);
+        $this->middleware('can:roles:roles.index')->only('index');
+        $this->middleware('can:roles:roles.edit')->only(['edit', 'update']);
+        $this->middleware('can:roles:roles.show')->only('show');
+        $this->middleware('can:roles:roles.destroy')->only('destroy');
+    }
     public function index()
     {
         $roles = Role::paginate();

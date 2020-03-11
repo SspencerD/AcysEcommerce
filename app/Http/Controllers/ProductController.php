@@ -9,11 +9,15 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function __construct()
+    {
+        $this->middleware('can:roles:products.create')->only(['create', 'store']);
+        $this->middleware('can:roles:products.index')->only('index');
+        $this->middleware('can:roles:products.edit')->only(['edit', 'update']);
+        $this->middleware('can:roles:products.show')->only('show');
+        $this->middleware('can:roles:products.destroy')->only('destroy');
+    }
     public function index()
     {
         $products = Product::paginate();

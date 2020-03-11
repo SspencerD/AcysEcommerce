@@ -9,6 +9,14 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('can:roles:users.index')->only('index');
+        $this->middleware('can:roles:users.edit')->only(['edit', 'update']);
+        $this->middleware('can:roles:users.show')->only('show');
+        $this->middleware('can:roles:users.destroy')->only('destroy');
+    }
+
     public function index()
     {
         $users = User::paginate();
@@ -29,6 +37,8 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $user->update($request->all());
+        //sincronizamos los roles
+        $user->roles()->sync($request->get('roles'));
 
         return redirect()->route('users.index')
             ->with('warning', 'Usuario actualizado con exito!');

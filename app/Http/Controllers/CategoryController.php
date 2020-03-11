@@ -9,11 +9,14 @@ use Illuminate\Support\Facades\File;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('can:roles:categories.create')->only(['create', 'store']);
+        $this->middleware('can:roles:categories.index')->only('index');
+        $this->middleware('can:roles:categories.edit')->only(['edit', 'update']);
+        $this->middleware('can:roles:categories.show')->only('show');
+        $this->middleware('can:roles:categories.destroy')->only('destroy');
+    }
     public function index()
     {
         $categories = Category::paginate();

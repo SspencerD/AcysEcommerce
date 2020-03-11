@@ -1,11 +1,11 @@
 @extends('layouts.dashboard')
 
-@section('title','Creación de producto |' .config('app.name'))
+@section('title','Edición de usuario |' .config('app.name'))
 
 @section('content')
 <div class="container-fluid">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Creación de categoria</h1>
+        <h1 class="h3 mb-0 text-gray-800">Edición de usuario</h1>
         <a href="{{ route('categories.index') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                 class="fas fa-arrow-left"></i>
             Volver a la lista </a>
@@ -68,15 +68,15 @@
                             <h2>Lista de roles</h2>
                             <div class="form-group">
                                 <ul class="list-unstyled">
-
                                     @foreach ($roles as $role)
                                     <li>
                                         <label>
-                                            @if($user->roles->contains($role->id)) checked=checked @endif
-                                            <input type="checkbox" name="roles[]" value="{{ old('id',$role->id) }}">
+                                            <input type="checkbox" name="roles[]" value="{{ $role->id }}"
+                                                @if($user->roles->contains($role->id))
+                                            checked=checked
+                                            @endif>
                                             {{ $role->name }}
-                                            <em>({{ $role->description }})</em>
-
+                                            <em>{{ $role->description ?: 'Sin descripción' }}</em>
                                         </label>
                                     </li>
 

@@ -57,7 +57,6 @@
 						@endif
 						@else
 						@if(!auth()->user()->admin)
-
 						<a class="dropdown-item"
 							href="{{url('/perfil')}}">{{ Auth::user()->name}}{{Auth::user()->lastname }}</a>
 						@else

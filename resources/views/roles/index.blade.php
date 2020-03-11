@@ -6,6 +6,7 @@
 
 <!-- Begin Page Content -->
 <div class="container-fluid">
+    @include('includes.flash-messages')
 
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Listado de roles</h1>
