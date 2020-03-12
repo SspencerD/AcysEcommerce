@@ -39,7 +39,7 @@ class Product extends Model
 
 
 
-    public function categories()
+    public function category()
     {
         return $this->belongsTo(Category::class);
     }
@@ -63,12 +63,11 @@ class Product extends Model
         //default
         return  'images/default.jpg';
     }
+    protected $appends = ['category_name'];
 
     public function getCategoryNameAttribute()
     {
         if ($this->category)
             return $this->category->name;
-
-        return 'Sin Categorizar';
     }
 }

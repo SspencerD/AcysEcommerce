@@ -18,7 +18,7 @@ class WelcomeController extends Controller
     public function index()
     {
         $categories = Category::get();
-        $products = Product::get();
+        $products = Product::paginate(6);
 
         return view('welcome', compact('categories', 'products'));
     }

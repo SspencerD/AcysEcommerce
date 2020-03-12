@@ -3,15 +3,36 @@
 @section('title','Tienda Online|'. config('app.name'))
 
 @section('content')
+@yield('vue')
+
+@section('styles')
+<style>
+    .col-md-12 .row .product {
+
+        margin-bottom: 3em;
+    }
+
+    /*    .row {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .row>[class *='col-'] {
+        display: flex;
+        flex-direction: column;
+    } */
+</style>
+@endsection
 @include('includes.menu')
 <!-- SECTION -->
 <div class="section">
     <!-- container -->
     <div class="container">
-        @include('includes.flash-messages')
         <!-- row -->
         <div class="row">
-
             {{-- Carousel --}}
             @include('includes.carousel')
             {{-- fin carousel --}}
@@ -54,56 +75,63 @@
                 <div class="row">
                     <div class="products-tabs">
                         <!-- tab -->
-                        <div id="tab1" class="tab-pane active">
-                            @foreach( $categories as $category )
-                            <div class="products-slick" data-nav="#{{ $category->id }}">
-                                @forelse( $category->products as product)
+                        @foreach($categories as $category)
+                        <div id="{{  $category->id  }}" class="tab-pane active">
+                            <div class="products-slick" data-nav="#slick-nav-1">
+                                <!-- product -->
+                                @forelse($category->products as $product)
                                 <div class="product">
                                     <div class="product-img">
-                                        <img src="./img/product01.png" alt="">
+                                        <img src="{{ $product->featured_image_url }}" alt="">
                                         <div class="product-label">
                                             <span class="sale">-30%</span>
-                                            <span class="new">{{ $product->status }}</span>
+                                            <span class="new">{{$product->status}}</span>
                                         </div>
                                     </div>
                                     <div class="product-body">
                                         <p class="product-category">{{ $product->category_name }}</p>
                                         <h3 class="product-name"><a href="#">{{ $product->name }}</a></h3>
-                                        <h4 class="product-price"> $ {{ $product->price}}
-                                            <!--<del class="product-old-price">$990.00</del> -->
+                                        <h4 class="product-price">${{$product->price }}
+                                            <!-- <del class="product-old-price">$990.00</del> -->
                                         </h4>
-                                        {{--  <div class="product-rating">
+                                        <div class="product-rating">
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
-                                        </div> --}}
+                                        </div>
                                         <div class="product-btns">
                                             {{-- <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span
-                                                    class="tooltipp">add to wishlist</span></button>
-                                            <button class="add-to-compare"><i class="fa fa-exchange"></i><span
-                                                    class="tooltipp">add to compare</span></button> --}}
-                                            <form action="" method="get">
-                                                <button class="quick-view"><i class="fa fa-eye"></i><span
-                                                        class="tooltipp" type="submit">Vista rapida</span></button>
-                                            </form>
+                                                class="tooltipp">add to wishlist</span></button> --}}
+                                            {{-- <button class="add-to-compare"><i class="fa fa-exchange"></i><span
+                                                class="tooltipp">add to compare</span></button> --}}
+
+                                            <a href="{{route('products.show',$product->id)}}"
+                                                class="quick-view btn-circle"><i class="fa fa-eye"></i><span
+                                                    class="tooltipp">Ver
+                                                </span></a>
                                         </div>
                                     </div>
                                     <div class="add-to-cart">
-                                        <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Agregar a
-                                            carrito</button>
+                                        <form action="" method="post">
+                                            <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"
+                                                    type="submit"></i>Agregar a
+                                                carrito
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                                 @empty
-                                <p> Vaya... esta categoria aun no tiene productos... 😒</p>
-
+                                <div class="loader">
+                                    <h1>Vaya no hay productos para esta categoria.</h1>
+                                </div>
                                 @endforelse
                                 <!-- /product -->
                             </div>
-                            @endforeach
-                            <div id="slick-nav-1" class="products-slick-nav"></div>
+
                         </div>
+                        @endforeach
                         <!-- /tab -->
                     </div>
                 </div>

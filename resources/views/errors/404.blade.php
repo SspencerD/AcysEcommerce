@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+@extends('layouts.app')
 
 @section('title','Uuuh aaah? no reconocemos esto... |' .config('app.name'))
 

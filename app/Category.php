@@ -26,8 +26,12 @@ class Category extends Model
 
     public function products()
     {
+
+
         return $this->hasMany(Product::class);
     }
+
+
     public function getFeaturedImageUrlAttribute()
     {
         if ($this->image)

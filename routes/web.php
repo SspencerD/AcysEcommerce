@@ -18,6 +18,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+Route::post('/cart', 'CartDetailController@store');
 
 Route::middleware(['auth'])->group(function () {
 
