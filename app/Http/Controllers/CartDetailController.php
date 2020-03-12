@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\CartDetail;
 use Illuminate\Http\Request;
 
 class CartDetailController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     public function index()
     {
         //
@@ -34,7 +37,24 @@ class CartDetailController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // ya existe este producto cargado como detalle?
+        $cart = auth()->user()->cart;
+        $detail = $cart->details()->where('product_id', $request->product_id)->first();
+
+        if ($detail) {
+            //en caso de si , solo actualiza el carrito
+            $detail->quantity += $request->quantity;
+            $detail->save();
+        } else {
+            //en el caso que no , hacemos lo de siempre
+
+            $cartDetail = new CartDetail();
+            $cartDetail->cart_id = auth()->user()->cart->id;
+            $cartDetail->product_id = $request->product_id;
+            $cartDetail->quantity = $request->quantity;
+            $cartDetail->save();
+        }
+        return back()->with('info', 'Producto añadido correctamente!');
     }
 
     /**
@@ -71,14 +91,11 @@ class CartDetailController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+
+    public function destroy(Request $request)
     {
-        //
+        $cartDetail = CartDetail::find($request->cart_detail_id);
+        $cartDetail->delete();
+        return back()->with('success', 'producto eliminado de tu carrito');
     }
 }

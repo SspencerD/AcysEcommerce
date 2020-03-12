@@ -5,6 +5,9 @@
 
 
 @section('content')
+@include('includes.menu')
+@include('includes.flash-messages')
+
 <!-- SECTION -->
 <div class="section">
     <!-- container -->
@@ -64,20 +67,25 @@
                 </div>
                 <p>{{$product->description}}</p>
 
+                <form action="{{url('/cart')}}" method="post">
+                <input type="hidden" name="product_id" value="{{$product->id }}">
                 <div class="add-to-cart">
                     <div class="qty-label">
                         cantidad
                         <div class="input-number">
-                            <input type="number" value="1">
+                            <input type="number" name="quantity" value="1">
                             <span class="qty-up">+</span>
                             <span class="qty-down">-</span>
                         </div>
                     </div>
+
+                        @csrf
                     @if($product->stock !=0)
                     <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Agregar</button>
                     @else
                     <a type="button" href="#" class="btn btn-danger"><i class="fa fa-shopping-cart"></i>Sin Stock</a>
                     @endif
+                </form>
                 </div>
                 <ul class="product-links">
                     <li>Categoria:</li>

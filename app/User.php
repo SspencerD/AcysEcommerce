@@ -47,4 +47,27 @@ class User extends Authenticatable
         //
         return '/img/default.jpg';
     }
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+
+    }
+
+    public function getCartAttribute()
+    {
+        $cart = $this->carts()->where('status','Active')->first();
+
+        if($cart)
+            return $cart; // si tiene un carrito de compras activo , devolverlo
+
+            //else
+            $cart = new Cart();  // sino crea un nuevo carrito de compras
+            $cart->status = 'Active';
+            $cart->user_id = $this->id;
+            $cart->save(); // lo guardas
+
+            return $cart;  // y lo retornas al usuario correspondiente.
+
+    }
 }

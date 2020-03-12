@@ -18,7 +18,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+
+//carrito de compras
 Route::post('/cart', 'CartDetailController@store');
+Route::delete('/cart','CartDetailController@destroy');
 
 Route::middleware(['auth'])->group(function () {
 

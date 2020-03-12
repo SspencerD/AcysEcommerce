@@ -27,6 +27,8 @@
 </style>
 @endsection
 @include('includes.menu')
+
+@include('includes.flash-messages')
 <!-- SECTION -->
 <div class="section">
     <!-- container -->
