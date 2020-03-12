@@ -66,8 +66,8 @@ class Product extends Model
 
     public function getCategoryNameAttribute()
     {
-        if ($this->category)
-            return $this->category->name;
+        if ($this->categories)
+            return $this->categories->name;
 
         return 'Sin Categorizar';
     }
