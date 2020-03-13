@@ -1,5 +1,6 @@
 <?php
 
+use App\PaymentPlatform;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,5 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PermissionsTableSeeder::class);
         $this->call(UsersTableSeeder::class);
         $this->call(ProductsTableSeeder::class);
+        $this->call(PaymentPlatformsTableSeeder::class);
+        $this->call(CurrenciesTableSeeder::class);
     }
 }

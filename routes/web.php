@@ -11,6 +11,8 @@
 |
 */
 
+use App\Http\Controllers\HomeController;
+
 Route::resource('welcome', 'WelcomeController');
 
 
@@ -19,11 +21,19 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
+
+
 //carrito de compras
 Route::post('/cart', 'CartDetailController@store');
 Route::delete('/cart','CartDetailController@destroy');
+//orden
+Route::post('order.update','CartController@update')
+->name('order.update')->middleware('can:roles:orden.update');
 
 Route::middleware(['auth'])->group(function () {
+
+    Route::get('perfil','HomeController@perfil')
+    ->name('perfil.perfil')->middleware('can:roles:perfil.perfil');
 
     //dashboard
     Route::get('dashboard', 'DashboardController@dashboard')

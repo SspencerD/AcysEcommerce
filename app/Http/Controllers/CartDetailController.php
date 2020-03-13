@@ -57,45 +57,13 @@ class CartDetailController extends Controller
         return back()->with('info', 'Producto añadido correctamente!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-
     public function destroy(Request $request)
     {
         $cartDetail = CartDetail::find($request->cart_detail_id);
+        if ($cartDetail->cart_id == auth()->user()->cart->id)
         $cartDetail->delete();
+        else
+
         return back()->with('success', 'producto eliminado de tu carrito');
     }
 }

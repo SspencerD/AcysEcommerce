@@ -115,14 +115,16 @@
                                                 </span></a>
                                         </div>
                                     </div>
-                                    <div class="add-to-cart">
-                                        <form action="" method="post">
+                                    {{-- <div class="add-to-cart">
+                                        <form action="{{url('/cart')}}" method="post">
+                                            <input type="hidden" name="product_id" value="{{$product->id }}">
+                                            <input type="hidden" name="quantity" value="1">
                                             <button class="add-to-cart-btn"><i class="fa fa-shopping-cart"
                                                     type="submit"></i>Agregar a
                                                 carrito
                                             </button>
                                         </form>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 @empty
                                 <div class="loader">
