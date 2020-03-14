@@ -24,7 +24,7 @@ class PaymentPlatformsTableSeeder extends Seeder
         ]);
         PaymentPlatform::create([
             'name' => 'MercadoPago',
-            'image' => 'images/payments/mpago.png',
+            'image' => 'images/payments/mpago.jpg',
 
         ]);
         PaymentPlatform::create([

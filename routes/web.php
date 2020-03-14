@@ -23,17 +23,22 @@ Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
 
 
+
+
 //carrito de compras
 Route::post('/cart', 'CartDetailController@store');
-Route::delete('/cart','CartDetailController@destroy');
+Route::delete('/cart', 'CartDetailController@destroy');
 //orden
-Route::post('order.update','CartController@update')
-->name('order.update')->middleware('can:roles:orden.update');
+Route::post('order.update', 'CartController@update')
+    ->name('order.update')->middleware('can:roles:orden.update');
 
+//pago
+    Route::resource('payments', 'PaymentController');
+    
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('perfil','HomeController@perfil')
-    ->name('perfil.perfil')->middleware('can:roles:perfil.perfil');
+    Route::get('perfil', 'HomeController@perfil')
+        ->name('perfil.perfil')->middleware('can:roles:perfil.perfil');
 
     //dashboard
     Route::get('dashboard', 'DashboardController@dashboard')

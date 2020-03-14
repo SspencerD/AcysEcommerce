@@ -12,6 +12,7 @@
         "caffeinated/shinobi": "^5.0",
         "fideloper/proxy": "^4.0",
         "fzaninotto/faker": "^1.9",
+        "guzzlehttp/guzzle": "^6.5",
         "laravel/framework": "^6.2",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^1.2",
