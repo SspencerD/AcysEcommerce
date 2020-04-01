@@ -14,7 +14,8 @@
 use App\Http\Controllers\HomeController;
 
 Route::resource('welcome', 'WelcomeController');
-
+Route::get('search','SearchController@show')->name('search');
+Route::get('/products/json','SearchController@data');
 
 Auth::routes();
 
@@ -31,10 +32,10 @@ Route::delete('/cart', 'CartDetailController@destroy');
 //orden
 Route::post('order.update', 'CartController@update')
     ->name('order.update')->middleware('can:roles:orden.update');
-   
+
 Route::middleware(['auth'])->group(function () {
 
-  
+
     //pago
     Route::get('/payments', 'PaymentController@index')->name('payments');
     Route::post('/payments/pay','PaymentController@pay')->name('pay');
