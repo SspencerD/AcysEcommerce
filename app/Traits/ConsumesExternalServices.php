@@ -1,13 +1,11 @@
 <?php
 
-
 namespace App\Traits;
 
 use GuzzleHttp\Client;
 
-trait ConsumeExternalServices
+trait ConsumesExternalServices
 {
-
     public function makeRequest($method, $requestUrl, $queryParams = [], $formParams = [], $headers = [], $isJsonRequest = false)
     {
         $client = new Client([
@@ -21,13 +19,15 @@ trait ConsumeExternalServices
         $response = $client->request($method, $requestUrl, [
             $isJsonRequest ? 'json' : 'form_params' => $formParams,
             'headers' => $headers,
-            'query' => $queryParams
+            'query' => $queryParams,
         ]);
-
 
         $response = $response->getBody()->getContents();
 
-        $response =  $this->decodeResponse($response);
+        if (method_exists($this, 'decodeResponse')) {
+            $response = $this->decodeResponse($response);
+        }
+
         return $response;
     }
 }

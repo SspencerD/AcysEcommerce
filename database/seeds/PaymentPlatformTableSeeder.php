@@ -3,7 +3,7 @@
 use App\PaymentPlatform;
 use Illuminate\Database\Seeder;
 
-class PaymentPlatformsTableSeeder extends Seeder
+class PaymentPlatformTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,29 +13,27 @@ class PaymentPlatformsTableSeeder extends Seeder
     public function run()
     {
         PaymentPlatform::create([
-            'name' => 'Paypal',
-            'image' => 'images/payments/paypal.jpg',
-
+            'name' =>'Paypal',
+            'image' =>'images/payments/paypal.jpg',
         ]);
+
         PaymentPlatform::create([
             'name' => 'Stripe',
             'image' => 'images/payments/stripe.jpg',
-
         ]);
         PaymentPlatform::create([
-            'name' => 'MercadoPago',
+            'name' => 'Mercadopago',
             'image' => 'images/payments/mpago.jpg',
-
         ]);
         PaymentPlatform::create([
-            'name' => 'TransBank',
-            'image' => 'images/payments/webpay.jpg',
-
-        ]);
-        PaymentPlatform::create([
-            'name' => 'PayU',
+            'name' => 'Payu',
             'image' => 'images/payments/payu.jpg',
-
         ]);
+        PaymentPlatform::create([
+            'name' => 'Webpay',
+            'image' => 'images/payments/webpay.jpg',
+        ]);
+        
+        
     }
 }

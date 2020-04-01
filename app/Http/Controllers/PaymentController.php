@@ -4,48 +4,83 @@ namespace App\Http\Controllers;
 
 use App\Currency;
 use App\PaymentPlatform;
+use App\Resolvers\PaymentPlatformResolver;
+use App\Services\PayPalService;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('can:roles:payments.index')->only('index');
-        $this->middleware('can:roles:payments.store')->only('store');
-    }
 
-    public  function index()
+    protected $paymentPlatformResolver;
+
+    public function __construct(PaymentPlatformResolver $paymentPlatformResolver)
+    {
+        $this->middleware('auth');
+
+        $this->paymentPlatformResolver = $paymentPlatformResolver;
+    }
+    
+    public function index()
     {
         $currencies = Currency::all();
         $payments = PaymentPlatform::all();
-        return view('payments.index', compact('currencies', 'payments'));
+
+        return view('payments')->with([
+            'currencies' => $currencies,
+            'payments' => $payments,
+        ]);
     }
-    public function store(Request $request)
+    public function pay(Request $request)
     {
         $rules = [
-            'value' => ['required', 'numeric', 'min:500'],
-            'currency' => ['required ', 'exists:currencies,iso'],
-            'payment_platforms' => ['required', 'exists:payment_platforms,id'],
+            'value' => ['required', 'numeric', 'min:5'],
+            'currency' => ['required', 'exists:currencies,iso'],
+            'payment_platform' => ['required', 'exists:payment_platforms,id'],
+        ];
+        $mensaje = [
+            'value.required' => 'El valor es requerido',
+            'value.numeric' => 'El valor debe ser numerico',
+            'value.min' => 'El valor debe ser minimo de 5',
+
+            'currency.required' => 'la moneda es requerida',
+            'currency.exists' => 'La moneda debe existir',
+
+            'payment_platform.required' => 'Es necesario una plataforma de pago',
+            'payment_platform.exists' =>'la plataforma de pago debe existir..',
         ];
 
-        $messages = [
-            'value.required' => 'Se requiere un valor minimo de 100',
-            'value.numeric' =>'El valor debe ser numerico',
-            'value.min' =>'el valor debe ser minimo de 500',
-            'currency.required' => 'debe obligadamente seleccionar una divisa',
-            'currency.exist' =>'debe seleccionar una divisa',
-            'payment_platform.required' => 'debe seleccionar un tipo de pago',
-            'payment_platform.exist' =>'debe seleccionar una plataforma de pago',
-        ];
+        $request->validate($rules,$mensaje);
 
-        $request->validate($rules, $messages);
+        $paymentPlatform = $this->paymentPlatformResolver
+            ->resolveService($request->payment_platform);
 
-        return $request->all();
+        session()->put('paymentPlatformId', $request->payment_platform);
+
+        return $paymentPlatform->handlePayment($request);
+
     }
-    public function aprroval()
+
+    public function approval()
     {
+
+        if (session()->has('paymentPlatformId')) {
+            $paymentPlatform = $this->paymentPlatformResolver
+                ->resolveService(session()->get('paymentPlatformId'));
+
+            return $paymentPlatform->handleApproval();
+        }
+        
+        return redirect()
+            ->route('perfil')
+            ->withErrors('No hemos recibido la plataforma de pago , favor intentalo de nuevo mas tarde.');
     }
+
     public function cancelled()
     {
+        return redirect()
+            ->route('perfil')
+            ->withErrors('Haz cancelado el pago.');
     }
+
+    
 }

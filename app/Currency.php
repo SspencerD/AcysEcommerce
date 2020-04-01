@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Currency extends Model
 {
 
-    //declaramos que esta es el id del modelo
-    protected $primarykey ='iso';
+    protected $primaryKey ='iso';
+    
+    public  $incrementing = false;
 
- //indicamos que no auto incremente
-    public $incrementing = false;
+    protected $fillable = [
+        'iso',
 
-
-    protected $fillable = [ 'iso',];
+    ];
 }

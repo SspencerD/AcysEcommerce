@@ -1,17 +1,34 @@
 @extends('layouts.app')
 
 
-@section('title','Producto |' .config('app.name'))
+@section('title','Mi Perfil |' .config('app.name'))
 
 
 @section('content')
 @include('includes.menu')
-@include('includes.flash-messages')
-
 <div class="section">
     <!-- container -->
     <div class="container">
         <!-- row -->
+        @if(isset($errors) && $errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach($errors->all() as $error)
+                <li>{{$error}}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+
+        @if (session()->has('success'))
+        <div class="alert alert-success">
+            <ul>
+                @foreach(session()->get('success') as $message)
+                <li>{{$message}}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
         <div class="row">
             <h1>Tus pedidos</h1>
             <table class="table">
@@ -34,7 +51,8 @@
                         <td>{{$detail->quantity}}</td>
                         <td>$ <b>{{$detail->product->price}}</b></td>
                         <td><b>{{$detail->quantity*$detail->product->price }}</b></td>
-                        <td><div class="dropdown">
+                        <td>
+                            <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     Acciones
@@ -63,9 +81,10 @@
             </table>
             <hr>
 
-        <form action="{{route('order.update')}}" method="post">
-            @csrf
-                <button class="btn btn-warning btn-lg btn-rnd text-center" type="submit"><i class="fas fa-cart-arrow-down"></i>        Realizar compra</button>
+            <form action="{{route('order.update')}}" method="post">
+                @csrf
+                <button class="btn btn-warning btn-lg btn-rnd text-center" type="submit"><i
+                        class="fas fa-cart-arrow-down"></i> Realizar compra</button>
             </form>
 
 

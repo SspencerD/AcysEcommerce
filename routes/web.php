@@ -31,14 +31,17 @@ Route::delete('/cart', 'CartDetailController@destroy');
 //orden
 Route::post('order.update', 'CartController@update')
     ->name('order.update')->middleware('can:roles:orden.update');
-
-//pago
-    Route::resource('payments', 'PaymentController');
-    
+   
 Route::middleware(['auth'])->group(function () {
 
-    Route::get('perfil', 'HomeController@perfil')
-        ->name('perfil.perfil')->middleware('can:roles:perfil.perfil');
+  
+    //pago
+    Route::get('/payments', 'PaymentController@index')->name('payments');
+    Route::post('/payments/pay','PaymentController@pay')->name('pay');
+    Route::get('/payments/approval', 'PaymentController@approval')->name('approval');
+    Route::get('/payments/cancelled', 'PaymentController@cancelled')->name('cancelled');
+    //perfil
+    Route::get('perfil', 'HomeController@perfil')->name('perfil');
 
     //dashboard
     Route::get('dashboard', 'DashboardController@dashboard')

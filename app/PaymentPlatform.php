@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class PaymentPlatform extends Model
 {
-
-    protected $fillable =[
+    protected $fillable = [
         'name','image',
+
     ];
 }
