@@ -36,7 +36,7 @@
 
             <div class="form-row">
                 <div>
-                    <form action="{{ route('perfil.perfil')}}" method="get">
+                    <form action="{{ route('perfil')}}" method="get">
                         <button class="btn btn-info btn-round">Ver Carrito</button>
                     </form>
                 </div>

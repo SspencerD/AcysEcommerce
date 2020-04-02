@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 
-@section('title','Creación de producto |' .config('app.name'))
+@section('title','Edición de Categoria |' .config('app.name'))
 
 @section('content')
 <div class="container-fluid">

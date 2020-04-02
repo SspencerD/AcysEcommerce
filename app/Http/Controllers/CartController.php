@@ -20,10 +20,12 @@ class CartController extends Controller
         $cart->save();
          // actualiza carrito de compras
 
-         $admin = /* Role::where('admin'); */
-         Mail::to($admin)->send(new NewOrder($client,$cart));
+          /* Role::where('admin'); */
+         Mail::to($client)->send(new NewOrder($client,$cart));
 
-         return back()->with('success','Tenemos listo tu carrito! ,te enviaremos un mail con los detalles');
+         return redirect()
+         ->route('payments')
+         ->with('success','Tenemos listo tu carrito! ,te enviaremos un mail con los detalles. Seras redirigido a la pagina de pago');
 
 
 

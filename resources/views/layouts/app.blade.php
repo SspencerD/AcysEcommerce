@@ -196,7 +196,7 @@
   prefetch: '{{ url("/products/json") }}'
 });
 
-$('#search').typeahead({
+$('#buscar').typeahead({
   hint: true,
   highlight: true,
   minLength: 1
