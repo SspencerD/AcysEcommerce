@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title',config('app.name',))</title>
+    <title>@yield('title',config('app.name'))</title>
 
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
@@ -81,12 +81,14 @@
     <header>
         <!-- TOP HEADER -->
         <div id="top-header">
+            
             <div class="container">
                 <div class="dropdown header-links pull-right">
                     <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Mi cuenta
                     </button>
+
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         @guest
                         <a class="dropdown-item" href="{{ route('login') }}">{{ __('Ingresar') }}</a></li>
@@ -126,7 +128,7 @@
                     <div class="col-md-3">
                         <div class="header-logo">
                             <a href="#" class="logo">
-                                <img src="{{ url('/images/logo.png') }}" height="100" alt="">
+                                <img src="{{ url('/images/logo.png') }}" height="150" alt="">
                             </a>
                         </div>
                     </div>

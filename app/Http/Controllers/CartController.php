@@ -20,8 +20,14 @@ class CartController extends Controller
         $cart->save();
          // actualiza carrito de compras
 
-          /* Role::where('admin'); */
-         Mail::to($client)->send(new NewOrder($client,$cart));
+          $admin = \DB::table('users')
+          ->join('role_user','user_id','=','role_user.user_id')
+          ->join('roles','role_user.role_id','=','roles.id')
+          ->select('roles.name as role_name',
+            'users.name as name',
+            'users.email as email',)
+          ->whereIn('roles_name',['admin']);
+         Mail::to($admin)->send(new NewOrder($client,$cart));
 
          return redirect()
          ->route('payments')
