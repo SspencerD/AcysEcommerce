@@ -13,7 +13,7 @@
 
 use App\Http\Controllers\HomeController;
 
-Route::resource('welcome', 'WelcomeController');
+Route::get('inicio', 'WelcomeController@index')->name('inicio');
 Route::get('search','SearchController@show')->name('search');
 Route::get('/products/json','SearchController@data');
 
@@ -43,6 +43,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/payments/cancelled', 'PaymentController@cancelled')->name('cancelled');
     //perfil
     Route::get('perfil', 'HomeController@perfil')->name('perfil');
+
+    //otros
+    Route::get('contacto','WelcomeController@contacto')->name('contacto');
+    Route::get('nosotros', 'WelcomeController@nosotros')->name('nosotros');
 
     //dashboard
     Route::get('dashboard', 'DashboardController@dashboard')

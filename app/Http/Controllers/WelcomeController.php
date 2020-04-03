@@ -8,18 +8,21 @@ use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
 {
-
-    public function __construct()
-    {
-
-        $this->middleware('can:roles:welcomes.index')->only('welcome');
-    }
-
+    
     public function index()
     {
         $categories = Category::get();
         $products = Product::paginate(6);
 
         return view('welcome', compact('categories', 'products'));
+    }
+
+    public function contacto()
+    {
+        return view('contacto');
+    }
+    public function nosotros()
+    {
+        return view('nosotros');
     }
 }
