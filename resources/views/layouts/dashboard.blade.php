@@ -75,6 +75,9 @@
                         @can('categories.index')
                         <a class="collapse-item" href="{{  route('categories.index') }}">Categorias</a>
                         @endcan
+                        @can('subcategories.index')
+                        <a class="collapse-item" href="{{  route('subcategories.index') }}">Sub Categorias</a>
+                        @endcan
                         @can('users.index')
                         <a class="collapse-item" href="{{  route('users.index') }}">Usuarios</a>
                         @endcan

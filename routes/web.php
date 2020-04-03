@@ -12,7 +12,7 @@
 */
 
 use App\Http\Controllers\HomeController;
-
+Route::get('principio','InicioController@inicio')->name('principio');
 Route::get('inicio', 'WelcomeController@index')->name('inicio');
 Route::get('search','SearchController@show')->name('search');
 Route::get('/products/json','SearchController@data');
@@ -69,6 +69,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('products', 'ProductController');
     //Categories
     Route::resource('categories', 'CategoryController');
+    //SubCategories
+    Route::resource('subcategories', 'SubcategoriesController');
     //Users
     Route::resource('users', 'UserController');
 });
