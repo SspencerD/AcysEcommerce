@@ -15,7 +15,6 @@ class ProductController extends Controller
         $this->middleware('can:roles:products.create')->only(['create', 'store']);
         $this->middleware('can:roles:products.index')->only('index');
         $this->middleware('can:roles:products.edit')->only(['edit', 'update']);
-        $this->middleware('can:roles:products.show')->only('show');
         $this->middleware('can:roles:products.destroy')->only('destroy');
     }
     public function index()

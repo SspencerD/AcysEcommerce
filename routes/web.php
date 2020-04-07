@@ -67,6 +67,7 @@ Route::middleware(['auth'])->group(function () {
         ->name('products.images.select')->middleware('can:roles:products.images.select');
     //Products
     Route::resource('products', 'ProductController');
+    Route::get('/products/{id}','ProductController@show');
     //Categories
     Route::resource('categories', 'CategoryController');
     //SubCategories

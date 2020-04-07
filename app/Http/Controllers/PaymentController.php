@@ -2,24 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Cart;
 use App\Currency;
 use App\PaymentPlatform;
 use App\Resolvers\PaymentPlatformResolver;
 use App\Services\PayPalService;
+use App\User;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
 
+    public $user;
+    public $cart;
+
     protected $paymentPlatformResolver;
 
-    public function __construct(PaymentPlatformResolver $paymentPlatformResolver)
+    public function __construct(PaymentPlatformResolver $paymentPlatformResolver, User $user,Cart $cart)
     {
+        $this->user = $user;
+        $this->cart = $cart;
         $this->middleware('auth');
 
         $this->paymentPlatformResolver = $paymentPlatformResolver;
     }
-    
+
     public function index()
     {
         $currencies = Currency::all();
@@ -69,7 +76,7 @@ class PaymentController extends Controller
 
             return $paymentPlatform->handleApproval();
         }
-        
+
         return redirect()
             ->route('perfil')
             ->withErrors('No hemos recibido la plataforma de pago , favor intentalo de nuevo mas tarde.');
@@ -82,5 +89,5 @@ class PaymentController extends Controller
             ->withErrors('Haz cancelado el pago.');
     }
 
-    
+
 }

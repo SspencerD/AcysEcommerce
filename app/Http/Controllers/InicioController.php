@@ -12,13 +12,9 @@ class InicioController extends Controller
 
     public function inicio()
     {
-        $categories = Category::Where(array(
-            'name'=>'Electronica',
-            'name'=>'Perifericos',
-            'name'=>'Pantallas',
-            'name'=>'Notebooks',
-        ))->get();
-        dd($categories);
+        $categories = Category::WhereIn('name',[
+        'Electronica','Perifericos','Pantallas','Notebooks'
+        ])->get();
         $products = Product::paginate(5);
 
         return view('principio', compact('categories', 'products'));

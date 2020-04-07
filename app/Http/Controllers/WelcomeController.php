@@ -8,10 +8,12 @@ use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
 {
-    
+
     public function index()
     {
-        $categories = Category::get();
+        $categories = Category::WhereIn('name',[
+            'Herramientas','Insumos Ferreteros','Pinturas','Abrasivos','Adhesivos'
+            ])->get();
         $products = Product::paginate(6);
 
         return view('welcome', compact('categories', 'products'));

@@ -43,14 +43,16 @@
                     </tr>
                 </thead>
                 <tbody>
+
                     @forelse (auth()->user()->cart->details as $detail )
                     <tr>
                         <th scope="row"><img src="{{$detail->product->featured_image_url }}" alt="" height="50"></th>
                         <td><a href="{{ route('products.show',$detail->product->id) }}"></a>{{$detail->product->name}}
                         </td>
                         <td>{{$detail->quantity}}</td>
-                        <td>$ <b>{{$detail->product->price}}</b></td>
-                        <td><b>{{$detail->quantity*$detail->product->price }}</b></td>
+                        <td>$ <b>{{number_format($detail->product->price,2)}}</b></td>
+                        <td><b>{{ number_format($detail->quantity*$detail->product->price,2) }}</b></td>
+
                         <td>
                             <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
@@ -77,9 +79,10 @@
                 </tbody>
                 @empty
                 <span> Aun no tienes productos agregado a tu carrito</span>
+
                 @endforelse
             </table>
-            <hr>
+            <p><strong>Total de la compra:</strong>{{ auth()->user()->cart->total }}</p>
 
             <form action="{{route('order.update')}}" method="post">
                 @csrf

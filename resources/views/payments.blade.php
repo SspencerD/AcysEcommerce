@@ -12,6 +12,34 @@
                 <div class="card-header">Make a payment</div>
 
                 <div class="card-body">
+                    <div class="form-group">
+                        <table>
+                            <thead>
+                                <th>Nombre</th>
+                                <th>Cantidad</th>
+                                <th>Precio</th>
+                            </thead>
+                            <tbody>
+                                @forelse($cart->details as $detail)
+                                <tr>
+                                <td>{{$detail->product->name}}</td>
+                                <td>{{$detail->quantity}}</td>
+                                <td>{{$detail->product->price}}</td>
+                                </tr>
+
+                            </tbody>
+                            <th>Total</th>
+                            <tr>
+                                <td>
+                                    <p><strong>Total de la compra:</strong>{{ auth()->user()->cart->total }}</p>
+                                </td>
+                            </tr>
+                            @empty
+                            <p> No tienes detalles en tu carrito</p>
+
+                            @endforelse
+                        </table>
+                    </div>
                 <form action="{{ route('pay') }}" method="POST" id="paymentForm">
                         @csrf
 
