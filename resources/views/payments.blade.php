@@ -13,7 +13,7 @@
 
                 <div class="card-body">
                     <div class="form-group">
-                        <table>
+                        {{-- <table>
                             <thead>
                                 <th>Nombre</th>
                                 <th>Cantidad</th>
@@ -38,7 +38,7 @@
                             <p> No tienes detalles en tu carrito</p>
 
                             @endforelse
-                        </table>
+                        </table> --}}
                     </div>
                 <form action="{{ route('pay') }}" method="POST" id="paymentForm">
                         @csrf
