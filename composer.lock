@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "da29e4117bb4b5480325702b9e442cbc",
+    "content-hash": "4d9cffa03286054fd940ba49c54d5864",
     "packages": [
         {
             "name": "caffeinated/shinobi",
@@ -672,6 +672,7 @@
                     "email": "jakub.onderka@gmail.com"
                 }
             ],
+            "abandoned": "php-parallel-lint/php-console-color",
             "time": "2018-09-29T17:23:10+00:00"
         },
         {
@@ -718,6 +719,7 @@
                 }
             ],
             "description": "Highlight PHP code in terminal",
+            "abandoned": "php-parallel-lint/php-console-highlighter",
             "time": "2018-09-29T18:48:56+00:00"
         },
         {
@@ -1767,6 +1769,42 @@
                 "simple-cache"
             ],
             "time": "2017-10-23T01:57:42+00:00"
+        },
+        {
+            "name": "pstpagofacil/sdk-apis-php-signature",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PSTPAGOFACIL/sdk-apis-php-signature.git",
+                "reference": "23da4936a9b118d65757deb5f33e5ab8aba60b1d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PSTPAGOFACIL/sdk-apis-php-signature/zipball/23da4936a9b118d65757deb5f33e5ab8aba60b1d",
+                "reference": "23da4936a9b118d65757deb5f33e5ab8aba60b1d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PSTPagoFacil\\": "src/classes/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Cristian Tala",
+                    "email": "yomismo@cristiantala.cl"
+                }
+            ],
+            "description": "Librería de firmado para el API Transaccional de Pago Fácil",
+            "time": "2020-03-23T22:13:27+00:00"
         },
         {
             "name": "psy/psysh",
@@ -5444,7 +5482,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "pstpagofacil/sdk-apis-php-signature": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

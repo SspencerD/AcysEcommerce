@@ -22,7 +22,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
-
+Route::post('/webpay/callback', 'PaymentController@callbackWebpay')->name('callback.webpay');
 
 
 

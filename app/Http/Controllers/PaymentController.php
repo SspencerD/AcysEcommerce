@@ -7,8 +7,13 @@ use App\Currency;
 use App\PaymentPlatform;
 use App\Resolvers\PaymentPlatformResolver;
 use App\Services\PayPalService;
+use App\Services\WebPayService;
 use App\User;
+use App\WebPay;
 use Illuminate\Http\Request;
+use PSTPagoFacil\SignatureHelper;
+use Illuminate\Support\Facades\Log;
+
 
 class PaymentController extends Controller
 {
@@ -37,6 +42,8 @@ class PaymentController extends Controller
             'payments' => $payments,
         ]);
     }
+
+
     public function pay(Request $request)
     {
         $rules = [
@@ -64,7 +71,7 @@ class PaymentController extends Controller
         session()->put('paymentPlatformId', $request->payment_platform);
 
         return $paymentPlatform->handlePayment($request);
-
+        
     }
 
     public function approval()
@@ -88,6 +95,13 @@ class PaymentController extends Controller
             ->route('perfil')
             ->withErrors('Haz cancelado el pago.');
     }
-
+    
+    public function callbackWebpay(Request $request) {
+        Log::info('Request Callback Webpay:', $request);
+    
+        dd($request);
+    }
 
 }
+
+

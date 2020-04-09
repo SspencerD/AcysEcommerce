@@ -30,15 +30,14 @@
             </div>
             @endif
 
-            @if(session()->has('success'))
-            <div class="alert alert-success">
-                <ul>
-                    @foreach(session()->get('success') as $message)
-                    <li>{{$message}}</li>
-                    @endforeach
-                </ul>
-            </div>
+            @if(session('success'))
+                <div class="alert alert-success">
+                    <ul>
+                        <li>{{ session('success') }}</li>
+                    </ul>
+                </div>
             @endif
+
         </div>
 
         @yield('content')

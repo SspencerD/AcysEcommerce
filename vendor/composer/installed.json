@@ -1035,7 +1035,8 @@
                 "name": "Jakub Onderka",
                 "email": "jakub.onderka@gmail.com"
             }
-        ]
+        ],
+        "abandoned": "php-parallel-lint/php-console-color"
     },
     {
         "name": "jakub-onderka/php-console-highlighter",
@@ -1083,7 +1084,8 @@
                 "homepage": "http://www.acci.cz/"
             }
         ],
-        "description": "Highlight PHP code in terminal"
+        "description": "Highlight PHP code in terminal",
+        "abandoned": "php-parallel-lint/php-console-highlighter"
     },
     {
         "name": "laravel/framework",
@@ -3022,6 +3024,44 @@
             "psr-16",
             "simple-cache"
         ]
+    },
+    {
+        "name": "pstpagofacil/sdk-apis-php-signature",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/PSTPAGOFACIL/sdk-apis-php-signature.git",
+            "reference": "23da4936a9b118d65757deb5f33e5ab8aba60b1d"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/PSTPAGOFACIL/sdk-apis-php-signature/zipball/23da4936a9b118d65757deb5f33e5ab8aba60b1d",
+            "reference": "23da4936a9b118d65757deb5f33e5ab8aba60b1d",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2020-03-23T22:13:27+00:00",
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "PSTPagoFacil\\": "src/classes/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Cristian Tala",
+                "email": "yomismo@cristiantala.cl"
+            }
+        ],
+        "description": "Librería de firmado para el API Transaccional de Pago Fácil"
     },
     {
         "name": "psy/psysh",

@@ -63,5 +63,10 @@ return [
         'secret' => env('STRIPE_SECRET'),
         'class' => App\Services\StripeService::class,
     ],
+    'webpay' => [
+        'token_service' => env('WEBPAY_TOKEN_SERVICE'),
+        'token_secret' => env('WEBPAY_TOKEN_SECRET'),
+        'class' => App\Services\WebPayService::class,
+    ]
 
 ];
