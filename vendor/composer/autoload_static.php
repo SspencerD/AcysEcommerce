@@ -503,6 +503,7 @@ class ComposerStaticInit4131435b92a88b3e90b1ce5f9fa2d666
         'App\\Services\\PayPalService' => __DIR__ . '/../..' . '/app/Services/PayPalService.php',
         'App\\Services\\PayUService' => __DIR__ . '/../..' . '/app/Services/PayUService.php',
         'App\\Services\\StripeService' => __DIR__ . '/../..' . '/app/Services/StripeService.php',
+        'App\\Services\\WebPayService' => __DIR__ . '/../..' . '/app/Services/WebPayService.php',
         'App\\Subcategory' => __DIR__ . '/../..' . '/app/Subcategory.php',
         'App\\Traits\\ConsumesExternalServices' => __DIR__ . '/../..' . '/app/Traits/ConsumesExternalServices.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',

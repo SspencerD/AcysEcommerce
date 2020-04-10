@@ -11,65 +11,75 @@ use PSTPagoFacil\SignatureHelper;
 
 class WebPayService
 {
-    public function signatureWebpay($amount) {
-        $tokenService = env('WEBPAY_TOKEN_SERVICE');
-        $tokenSecret = env('WEBPAY_TOKEN_SECRET');
-
-        $sHelper = new SignatureHelper($tokenSecret);
-
-        $x_reference = (int) microtime(true); //Just a random number as an example 
-        $x_session_id = (int) microtime(true); //Just a random number as an example 
-
-
-        $trxBody = [
-            "x_account_id"=> $tokenService,
-            "x_amount"=> $amount,
-            "x_currency"=> "CLP",
-            "x_reference"=> $x_reference,
-            "x_customer_email"=> "emaildelcliente@pagofacil.cl",
-            "x_url_complete"=> "https://postman-echo.com/post",
-            "x_url_cancel"=> "https://postman-echo.com/post",
-            "x_url_callback"=> "https://postman-echo.com/post",
-            "x_shop_country"=> "CL",
-            "x_session_id"=> "$x_session_id"
-        ];
-
-        $x_signature = $sHelper->signPayload($trxBody);
-        $trxBody["x_signature"] = $x_signature;
-        return $x_signature;   
-    }
-
-    public function handlePayment($request) {
-        $amount = 2000;
+    public function authUser() {
         $client = new \GuzzleHttp\Client([
             'headers' => [ 'Content-Type' => 'application/json' ]
         ]);
-        $signature = $this->signatureWebpay($amount);
+        
         $data = array(
-            'x_account_id' => env('WEBPAY_TOKEN_SERVICE'),
-            'x_amount' => $amount,
-            'x_currency' => $request->currency,
-            'x_reference' => '000',
-            'x_customer_email' => 'test@gmail.com',
-            'x_url_complete' => \URL::route('callback.webpay'),
-            'x_url_cancel' => \URL::route('callback.webpay'),
-            'x_url_callback' => \URL::route('callback.webpay'),
-            'x_signature' => $signature,
-            'x_shop_country' => 'CL',
-            'x_session_id' => (int) microtime(true),
+            'username' => env('WEBPAY_USER'),
+            'password' => env('WEBPAY_PASSWORD'),
         );
 
-        
-        
-        $client->post('https://apis-dev.pgf.cl/trxs',
+        $apiRequest = $client->post('https://apis-dev.pgf.cl/users/login',
             ['body' => json_encode($data)]
         );
+        
+        $response = json_decode($apiRequest->getBody());
+
+        return $response;
+    }
+
+    public function handlePayment($request) {
+        $apiKey = env('WEBPAY_FLOW_PUBLIC');
+        $secretKey = env('WEBPAY_FLOW_SECRET');
+        $base_uri = "https://sandbox.flow.cl/api";
+
+        $amount = 2000;
+        $reference = '0005';
+        $session_id = (int) microtime(true);
+        $url = "https://09db0e1d.ngrok.io";
+        
+        $client = new \GuzzleHttp\Client([
+            'headers' => [ 'Content-Type' => 'application/json' ]
+        ]);
+
+        
+        $data = array(
+            "apiKey" => $apiKey,
+            "commerceOrder" => rand(1100,2000),
+            "subject" => "Pago de prueba",
+            "currency" => "CLP",
+            "amount" => 5000,
+            "email" => "cliente@gmail.com",
+            "paymentMethod" => 9,
+            "urlConfirmation" => $url,
+            "urlReturn" => $url,
+        );
+        
+        $keys = array_keys($data);
+        sort($keys);
+
+        $toSign = "";
+        foreach($keys as $key) {
+            $toSign .= $key . $data[$key];
+        };
+        
+        $signature = hash_hmac('sha256', $toSign , $secretKey);
+        //$data["s"] = $signature;
+
+        
+        dd(json_encode($data));
+        $client->post($base_uri.'/payment/create',
+            ['body' => json_encode($data)]
+        );
+        
 
         dd($client);
     }
 
     public function handleAproval() {
-        
+
     }
 
 }

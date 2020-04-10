@@ -56,6 +56,7 @@ return array(
     'App\\Services\\PayPalService' => $baseDir . '/app/Services/PayPalService.php',
     'App\\Services\\PayUService' => $baseDir . '/app/Services/PayUService.php',
     'App\\Services\\StripeService' => $baseDir . '/app/Services/StripeService.php',
+    'App\\Services\\WebPayService' => $baseDir . '/app/Services/WebPayService.php',
     'App\\Subcategory' => $baseDir . '/app/Subcategory.php',
     'App\\Traits\\ConsumesExternalServices' => $baseDir . '/app/Traits/ConsumesExternalServices.php',
     'App\\User' => $baseDir . '/app/User.php',
