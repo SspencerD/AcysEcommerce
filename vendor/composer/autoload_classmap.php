@@ -42,6 +42,7 @@ return array(
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Mail\\NewOrder' => $baseDir . '/app/Mail/NewOrder.php',
+    'App\\Order' => $baseDir . '/app/Order.php',
     'App\\PaymentPlatform' => $baseDir . '/app/PaymentPlatform.php',
     'App\\Product' => $baseDir . '/app/Product.php',
     'App\\ProductImage' => $baseDir . '/app/ProductImage.php',

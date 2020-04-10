@@ -489,6 +489,7 @@ class ComposerStaticInit4131435b92a88b3e90b1ce5f9fa2d666
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Mail\\NewOrder' => __DIR__ . '/../..' . '/app/Mail/NewOrder.php',
+        'App\\Order' => __DIR__ . '/../..' . '/app/Order.php',
         'App\\PaymentPlatform' => __DIR__ . '/../..' . '/app/PaymentPlatform.php',
         'App\\Product' => __DIR__ . '/../..' . '/app/Product.php',
         'App\\ProductImage' => __DIR__ . '/../..' . '/app/ProductImage.php',

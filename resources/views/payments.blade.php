@@ -47,7 +47,7 @@
                             <div class="col-auto">
                                 <label>el valor total a pagar es</label>
                                 <input type="number" min="5" step="0.01" class="form-control" name="value"
-                                    value="{{ mt_rand(500, 100000) / 100 }}" required>
+                                    value="{{ mt_rand(1000, 5000) }}" required>
                                 <small class="form-text text-muted">
                                    Recuerde que cada plataforma tiene su forma de pago.
                                 </small>

@@ -95,13 +95,13 @@ class PaymentController extends Controller
             ->route('perfil')
             ->withErrors('Haz cancelado el pago.');
     }
-    
-    public function callbackWebpay(Request $request) {
-        Log::info('Request Callback Webpay:', $request);
-    
-        dd($request);
-    }
 
+    public function callbackWebpay(Request $request) {
+        $paymentPlatform = $this->paymentPlatformResolver
+            ->resolveService(5);
+        
+        return $paymentPlatform->handleApproval($request);
+    }
 }
 
 

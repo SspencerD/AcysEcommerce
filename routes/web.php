@@ -22,8 +22,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
+//Callbacks
 Route::post('/webpay/callback', 'PaymentController@callbackWebpay')->name('callback.webpay');
-
 
 
 //carrito de compras
