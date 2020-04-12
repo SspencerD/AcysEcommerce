@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Cart;
+use App\CartDetail;
 use App\Currency;
 use App\PaymentPlatform;
 use App\Resolvers\PaymentPlatformResolver;
 use App\Services\PayPalService;
 use App\Services\WebPayService;
 use App\User;
+use App\Product;
 use App\WebPay;
 use Illuminate\Http\Request;
 use PSTPagoFacil\SignatureHelper;
@@ -32,12 +34,32 @@ class PaymentController extends Controller
         $this->paymentPlatformResolver = $paymentPlatformResolver;
     }
 
+    private function getTotalPrice($cart_products) {
+        $total_price = 0;
+        foreach($cart_products as $item) {
+            $product = Product::find($item->product_id);
+            $total = $product->price * $item->quantity;
+            $total_price += $total;
+        }
+        
+        return $total_price;
+    }
+
     public function index()
     {
         $currencies = Currency::all();
         $payments = PaymentPlatform::all();
-
+        $products_id = auth()->user()->cart->details;
+        
+        $total = $this->getTotalPrice($products_id);
+        $iva = $total * 0.19;
+        $totalIva = $total + $iva;
+        
+        //dd($total, $totalIva);
         return view('payments')->with([
+            'totalProducts' => round($total), 
+            'totalIva' => round($totalIva),
+            'iva'=> round($iva),
             'currencies' => $currencies,
             'payments' => $payments,
         ]);

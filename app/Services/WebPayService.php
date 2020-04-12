@@ -95,8 +95,22 @@ class WebPayService
             $order->status = 'pending';
         } else if($response->status == 2) {
             $order->status = 'completed';
+
+            //Cambiamos el estado del carro de compras
+            $user = auth()->user();
+            $cart = $user->cart;
+            $cart->status ='paid';
+            $cart->order_date=Carbon::now();
+            $cart->save();
         } else if($response->status == 3 || $response->status == 4) {
             $order->status = 'cancelled';
+
+            //Cambiamos el estado del carro de compras
+            $user = auth()->user();
+            $cart = $user->cart;
+            $cart->status ='pending';
+            $cart->order_date=Carbon::now();
+            $cart->save();
         }
 
         $order->save();
