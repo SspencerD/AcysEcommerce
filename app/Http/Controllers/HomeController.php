@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\CartDetail;
+use App\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -28,6 +31,7 @@ class HomeController extends Controller
 
     public function perfil()
     {
-        return view('perfil');
+        $carts = Cart::where('user_id', Auth::user()->id)->where('status', 'paid')->get();
+        return view('perfil')->with(compact('carts'));
     }
 }

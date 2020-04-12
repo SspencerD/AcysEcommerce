@@ -48,7 +48,7 @@ class PaymentController extends Controller
     public function index()
     {
         $currencies = Currency::all();
-        $payments = PaymentPlatform::all();
+        $payments = PaymentPlatform::Where('name', 'Webpay')->get();
         $products_id = auth()->user()->cart->details;
         
         $total = $this->getTotalPrice($products_id);

@@ -12,7 +12,7 @@ class WelcomeController extends Controller
     public function index()
     {
         $categories = Category::WhereIn('name',[
-            'Herramientas','Insumos Ferreteros','Pinturas','Abrasivos','Adhesivos'
+            'Herramientas','Herramientas Electricas','Pinturas','Abrasivos','Adhesivos','Insumos Ferreteros'
             ])->get();
         $products = Product::paginate(6);
 
