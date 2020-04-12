@@ -10,7 +10,7 @@
     <!-- container -->
     <div class="container">
         <!-- row -->
-        @if(isset($errors) && $errors->any())
+        @if($errors->any() )
         <div class="alert alert-danger">
             <ul>
                 @foreach($errors->all() as $error)
@@ -23,9 +23,21 @@
         @if (session()->has('success'))
         <div class="alert alert-success">
             <ul>
-                @foreach(session()->get('success') as $message)
-                <li>{{$message}}</li>
-                @endforeach
+                <li>{{ session()->get('success') }}</li>
+            </ul>
+        </div>
+        @endif
+        @if (session()->has('info'))
+        <div class="alert alert-info">
+            <ul>
+                <li>{{ session()->get('info') }}</li>
+            </ul>
+        </div>
+        @endif
+        @if (session()->has('warning'))
+        <div class="alert alert-warning">
+            <ul>
+                <li>{{ session()->get('warning') }}</li>
             </ul>
         </div>
         @endif

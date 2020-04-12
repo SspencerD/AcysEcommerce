@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Auth;
 use App\User;
 use App\Order;
+use App\Product;
+use Carbon\Carbon;
 use Session;
 use PSTPagoFacil\SignatureHelper;
 
@@ -90,18 +92,63 @@ class WebPayService
         $response = json_decode($apiRequest->getBody());
 
         $order = Order::where('token_webpay', $request->token)->first();
-        
+
         if($response->status == 1) {
             $order->status = 'pending';
         } else if($response->status == 2) {
             $order->status = 'completed';
+            //Cambiamos el estado del carro de compras
+            $this->productStock();
+            $user = auth()->user();
+            $cart = $user->cart;
+            $cart->status ='paid';
+            $cart->order_date=Carbon::now();
+            $cart->save();
+            
+
         } else if($response->status == 3 || $response->status == 4) {
             $order->status = 'cancelled';
+
+            //Cambiamos el estado del carro de compras
+            $user = auth()->user();
+            $cart = $user->cart;
+            $cart->status ='pending';
+            $cart->order_date=Carbon::now();
+            $cart->save();
         }
 
         $order->save();
+        
+        $message = null;
+        $type = null;
 
-        return redirect()->route('perfil');
+        if($order->stauts == 'pending') {
+            $message = 'Tu orden sigue en estado de pendiente, 
+                por lo que entedemos que has abandonado el proceso 
+                de pago o el pago aún está en proceso para ser completado.';
+            
+            $type = 'info';
+        } else if($order->status == 'cancelled') {
+            $message = 'Tu orden ha sido cancelada. El pago no se efectuó';
+            $type = 'warning';
+        } else if($order->status == 'completed')  {
+            $message = 'Tu orden ha sido completada con éxito.';
+            $type = 'success';
+        }
+        return redirect()->route('perfil')->with($type, $message);
     }
 
+
+    private function productStock() {
+        if(auth()->user()->cart) {
+            foreach(auth()->user()->cart->details as $detail) {
+                $product = Product::find($detail->product_id);
+                $product->stock -= $detail->quantity;
+                $product->save();
+            }
+        }
+        
+        return ;
+    }
+    
 }

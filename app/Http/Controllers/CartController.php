@@ -13,6 +13,7 @@ class CartController extends Controller
 {
     public function update()
     {
+      /*
         $client =auth()->user();
         $cart = $client->cart;
         $cart->status ='Pending';
