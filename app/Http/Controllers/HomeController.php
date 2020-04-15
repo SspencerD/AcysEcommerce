@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\CartDetail;
 use App\Cart;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,5 +34,17 @@ class HomeController extends Controller
     {
         $carts = Cart::where('user_id', Auth::user()->id)->where('status', 'paid')->get();
         return view('perfil')->with(compact('carts'));
+    }
+
+    public function edit(User $user)
+    {
+        return view('edits.edit-user', compact('user'));
+    }
+    public function update(Request $request, User $user)
+    {
+        $user->update($request->all());
+        //sincronizamos los roles
+        return redirect()->route('perfil')
+            ->with('warning', 'Usuario actualizado con exito!');
     }
 }

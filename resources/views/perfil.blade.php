@@ -42,9 +42,68 @@
         </div>
         @endif
         <div class="row">
-            <h1>Tu perfil</h1>
+
+            <h1>Resumen de Tu cuenta</h1>
             <br><br>
+            <hr>
             <br>
+            <b>
+                <p>Hola {{ auth()->user()->name }} {{ auth()->user()->lastname }} </p>
+            </b>
+
+            <p>Aquí tienes el resumen de tu cuenta. Puedes cambiar tu información personal y gestionar las opciones
+                disponibles para tu
+                cuenta</p>
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading"><b>Información personal</b> </div>
+                <div class="panel-body">
+                    <table style="border: 1px">
+                        <tbody>
+                                  <tr>
+                                      <th>Nombre:</th>
+                                      <td></td>
+                                      <td></td>
+                                      <td></td>
+                                      <td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{ auth()->user()->name}} {{ auth()->user()->lastname}}</td>
+                                </tr>
+                                <tr>
+                                    <th>RUT:</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{ auth()->user()->rut}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Dirección:</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{ auth()->user()->address}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Ciudad:</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{ auth()->user()->rut}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Correo:</th>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{ auth()->user()->email}}</td>
+                                </tr>
+                        </tbody>
+          
+                    </table>
+                    <tr></tr>
+                   
+                    <tr><a class=" btn btn-circle btn-group-lg btn-info " href="{{ route('edit-user',auth()->user()->id) }}">Editar</a></tr>
+                </div>
+            </div>
 
             <ul class="nav nav-tabs">
                 <li class="active">
@@ -52,9 +111,6 @@
                 </li>
                 <li>
                     <a href="#pedido" data-toggle="tab">Tus pedidos</a>
-                </li>
-                <li>
-                    <a href="#configuracion" data-toggle="tab">Configuración</a>
                 </li>
             </ul>
             <div class="tab-content clearfix">
@@ -154,35 +210,6 @@
 
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-pane" id="configuracion">
-                    <h5> Tus datos</h5>
-                    <div class="row">
-                        <div class="form-group-lg">
-                            <div class="col-auto">
-                                <label>Nombre</label>
-                                    <input type="text" name="name" value="{{auth()->user()->name }}" readonly>
-                                <label>Apellido</label>
-                                <input type="text" name="lastname" value="{{auth()->user()->lastname }}" readonly>
-                                <label>RUT</label>
-                                <input type="text" name="lastname" value="{{auth()->user()->rut }}" readonly>
-                                <hr>
-                            </div>
-                            <div class="row">
-                                <div class="col-auto">
-                                    <label >Telefonó</label>
-                                    <input type="text" name="lastname" value="{{auth()->user()->phone }}" readonly>
-                                    <label>Dirección</label>
-                                    <input type="text" name="lastname" value="{{auth()->user()->address }}" readonly>
-                                    <label>Email</label>
-                                    <input type="text" name="lastname" value="{{auth()->user()->email }}" readonly>
-                                </div>
-                                <span> deseas editar tus datos?</span>
-                            </div>
-                            <button type="submit" class="btn btn-warning btn-lg btn-circle">Editar datos </button>
-
                         </div>
                     </div>
                 </div>

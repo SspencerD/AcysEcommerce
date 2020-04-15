@@ -43,6 +43,8 @@ Route::middleware(['auth'])->group(function () {
     //perfil
     Route::get('perfil', 'HomeController@perfil')->name('perfil');
 
+    Route::get('/edits/edit-user/{id}','HomeController@edit')->name('edit-user');
+
     //otros
     Route::get('contacto','WelcomeController@contacto')->name('contacto');
     Route::get('nosotros', 'WelcomeController@nosotros')->name('nosotros');
