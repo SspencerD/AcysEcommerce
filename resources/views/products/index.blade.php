@@ -57,25 +57,25 @@
                                         Acciones
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                        @can('products.show')
+
                                         <a href="{{ route('products.show', $product->id) }}"
                                             class="dropdown-item btn btn-primary" type="button"><i
                                                 class="far fa-eye"></i>
                                             Ver</a>
-                                        @endcan
-                                        @can('products.images')
+
+
                                         <a href="{{ route('products.images', $product->id) }}"
                                             class="dropdown-item btn btn-primary" type="button"><i
                                                 class="far fa-image"></i>
                                             Imagenes</a>
-                                        @endcan
-                                        @can('products.edit')
+
+
                                         <a href="{{ route('products.edit', $product->id) }}"
                                             class="dropdown-item btn btn-warning" type="button"><i
                                                 class="far fa-edit"></i>
                                             Editar</a>
-                                        @endcan
-                                        @can('products.destroy')
+
+
                                         <form action=" {{ route('products.destroy', $product->id) }}" method="post">
                                             @csrf @method('DELETE')
 
@@ -83,7 +83,7 @@
                                                     class="fas fa-trash"></i>
                                                 Borrar</button>
                                         </form>
-                                        @endcan
+
                                     </div>
                             </th>
                         </tr>

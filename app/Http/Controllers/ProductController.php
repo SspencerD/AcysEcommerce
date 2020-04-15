@@ -12,16 +12,14 @@ class ProductController extends Controller
 
     public function __construct()
     {
-        $this->middleware('can:roles:products.create')->only(['create', 'store']);
-        $this->middleware('can:roles:products.index')->only('index');
-        $this->middleware('can:roles:products.edit')->only(['edit', 'update']);
-        $this->middleware('can:roles:products.destroy')->only('destroy');
+        $this->middleware('auth');
     }
+
     public function index()
     {
         $products = Product::paginate();
 
-        return view('products.index', compact('products'));
+        return view('products\index', compact('products'));
     }
 
     /**

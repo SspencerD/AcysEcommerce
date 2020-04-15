@@ -13,7 +13,7 @@
     <div class="card shadow mb-4">
         <div class="card-body">
             <form method="POST" action="{{route('categories.update',$category->id )}}" enctype="multipart/form-data">
-                @csrf @method('PUT')
+                @csrf
                 <div class="form-row">
                     <div class="col-md-3">
                         <div class="position-relative form-group">

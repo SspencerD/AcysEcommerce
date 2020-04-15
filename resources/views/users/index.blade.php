@@ -52,26 +52,26 @@
                                         Acciones
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                        @can('users.show')
+
                                         <a href="{{ route('users.show', $user->id) }}"
                                             class="dropdown-item btn btn-primary" type="button"><i
                                                 class="far fa-eye"></i>
                                             Ver</a>
-                                        @endcan
-                                        @can('users.edit')
+
+
                                         <a href="{{ route('users.edit', $user->id) }}"
                                             class="dropdown-item btn btn-warning" type="button"><i
                                                 class="far fa-edit"></i>
                                             Editar</a>
-                                        @endcan
-                                        @can('users.destroy')
+
+
                                         <form action=" {{ route('users.destroy', $user->id) }}" method="POST">
                                             @csrf @method('DELETE')
                                             <button class="dropdown-item btn btn-danger" type="submit"><i
                                                     class="fas fa-trash"></i>
                                                 Borrar</button>
                                         </form>
-                                        @endcan
+
                                     </div>
                             </th>
                         </tr>

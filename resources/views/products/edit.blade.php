@@ -14,7 +14,7 @@
         </div>
         <div class="card-body">
             <form action="{{ route('products.update',$product->id)}}" method="POST">
-                @csrf @method('PUT')
+                @csrf
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="inputEmail4">Codigo</label>

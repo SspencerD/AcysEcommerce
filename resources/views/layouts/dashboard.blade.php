@@ -69,21 +69,15 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Vistas</h6>
-                        @can('products.index')
+
                         <a class="collapse-item" href="{{  route('products.index') }}">Productos</a>
-                        @endcan
-                        @can('categories.index')
-                        <a class="collapse-item" href="{{  route('categories.index') }}">Categorias</a>
-                        @endcan
-                        @can('subcategories.index')
-                        <a class="collapse-item" href="{{  route('subcategories.index') }}">Sub Categorias</a>
-                        @endcan
-                        @can('users.index')
+
+
+                        <a class="collapse-item" href="{{ route('categories.index') }}">Categorias</a>
+
+
                         <a class="collapse-item" href="{{  route('users.index') }}">Usuarios</a>
-                        @endcan
-                        @can('roles.index')
-                        <a class="collapse-item" href="{{  route('roles.index') }}">Roles</a>
-                        @endcan
+
                     </div>
                 </div>
             </li>
@@ -381,7 +375,7 @@
                     <footer class="sticky-footer bg-white">
                         <div class="container my-auto">
                             <div class="copyright text-center my-auto">
-                                <span>Copyright &copy; Your Website 2019</span>
+                                <span>Copyright Your Website 2019</span>
                             </div>
                         </div>
                     </footer>

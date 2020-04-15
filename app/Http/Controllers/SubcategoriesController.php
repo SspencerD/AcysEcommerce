@@ -12,11 +12,7 @@ class SubcategoriesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:roles:subcategories.create')->only(['create', 'store']);
-        $this->middleware('can:roles:subcategories.index')->only('index');
-        $this->middleware('can:roles:subcategories.edit')->only(['edit', 'update']);
-        $this->middleware('can:roles:subcategories.show')->only('show');
-        $this->middleware('can:roles:subcategories.destroy')->only('destroy');
+     $this->middleware('auth');
     }
     public function index()
     {

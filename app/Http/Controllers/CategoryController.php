@@ -11,11 +11,7 @@ class CategoryController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('can:roles:categories.create')->only(['create', 'store']);
-        $this->middleware('can:roles:categories.index')->only('index');
-        $this->middleware('can:roles:categories.edit')->only(['edit', 'update']);
-        $this->middleware('can:roles:categories.show')->only('show');
-        $this->middleware('can:roles:categories.destroy')->only('destroy');
+        $this->middleware('auth');
     }
     public function index()
     {
@@ -51,7 +47,7 @@ class CategoryController extends Controller
     {
         $products = $category->products()->paginate(10);
 
-        return view('categories.show', compact('category', 'products'));
+        return view('categories\show', compact('category', 'products'));
     }
     public function edit(Category $category)
     {
@@ -82,7 +78,8 @@ class CategoryController extends Controller
     }
     public function destroy(Category $category)
     {
-        $category->delete();
+        $category->products()->delete();
+
         return redirect()->route('categories.index')
             ->with('info', 'Categoria Eliminada con exito!');
     }

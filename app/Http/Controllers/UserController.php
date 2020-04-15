@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use Caffeinated\Shinobi\Models\Role;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -11,17 +10,14 @@ class UserController extends Controller
 
     public function __construct()
     {
-        $this->middleware('can:roles:users.index')->only('index');
-        $this->middleware('can:roles:users.edit')->only(['edit', 'update']);
-        $this->middleware('can:roles:users.show')->only('show');
-        $this->middleware('can:roles:users.destroy')->only('destroy');
+       $this->middleware('auth');
     }
 
     public function index()
     {
         $users = User::paginate();
 
-        return view('users.index', compact('users'));
+        return view('users\index', compact('users'));
     }
     public function show(User $user)
     {
@@ -31,14 +27,12 @@ class UserController extends Controller
     public function edit(User $user)
 
     {
-        $roles = Role::get();
-        return view('users.edit', compact('user', 'roles'));
+
+        return view('users.edit', compact('user'));
     }
     public function update(Request $request, User $user)
     {
         $user->update($request->all());
-        //sincronizamos los roles
-        $user->roles()->sync($request->get('roles'));
 
         return redirect()->route('users.index')
             ->with('warning', 'Usuario actualizado con exito!');

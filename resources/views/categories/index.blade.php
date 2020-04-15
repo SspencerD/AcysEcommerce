@@ -46,19 +46,14 @@
                                         Acciones
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                        @can('categories.show')
                                         <a href="{{ route('categories.show', $category->id) }}"
                                             class="dropdown-item btn btn-primary" type="button"><i
                                                 class="far fa-eye"></i>
                                             Ver</a>
-                                        @endcan
-                                        @can('categories.edit')
                                         <a href="{{ route('categories.edit', $category->id) }}"
                                             class="dropdown-item btn btn-warning" type="button"><i
                                                 class="far fa-edit"></i>
                                             Editar</a>
-                                        @endcan
-                                        @can('categories.destroy')
                                         <form action=" {{ route('categories.destroy', $category->id) }}" method="POST">
                                             @method('DELETE')
                                             @csrf
@@ -67,7 +62,6 @@
                                                     class="fas fa-trash"></i>
                                                 Borrar</button>
                                         </form>
-                                        @endcan
                                     </div>
                             </th>
                         </tr>
@@ -86,3 +80,4 @@
 <!-- /.container-fluid -->
 
 @endsection
+

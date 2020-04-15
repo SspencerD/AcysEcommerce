@@ -36,15 +36,14 @@ class HomeController extends Controller
         return view('perfil')->with(compact('carts'));
     }
 
-    public function edit(User $user)
+    public function edit(Request $request)
     {
-        return view('edits.edit-user', compact('user'));
+        $user = $request->all();
+
+        return Auth::user()->update($user);
+
+
+
     }
-    public function update(Request $request, User $user)
-    {
-        $user->update($request->all());
-        //sincronizamos los roles
-        return redirect()->route('perfil')
-            ->with('warning', 'Usuario actualizado con exito!');
-    }
+
 }

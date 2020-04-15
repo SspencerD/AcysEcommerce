@@ -50,29 +50,47 @@ Route::middleware(['auth'])->group(function () {
     Route::get('nosotros', 'WelcomeController@nosotros')->name('nosotros');
 
     //dashboard
-    Route::get('dashboard', 'DashboardController@dashboard')
-        ->name('admin.dashboard')->middleware('can:roles:dashboard.dashboard');
+    Route::get('dashboard', 'DashboardController@dashboard')->name('admin.dashboard');
     //roles
     Route::resource('roles', 'RoleController');
     //Imagenes de producto
     Route::get('products/{product}/images', 'ImageController@index')
-        ->name('products.images')->middleware('can:roles:products.images');
-
+        ->name('products.images');
     Route::post('products/{id}/images', 'ImageController@store')
-        ->name('products.images.store')->middleware('can:roles:products.images.store');
-
+        ->name('products.images.store');
     Route::delete('products/{product}/images/', 'ImageController@destroy')
-        ->name('products.images.destroy')->middleware('can:roles:products.images.destroy');
-
+        ->name('products.images.destroy');
     Route::get('products/{product}/images/select/{images}', 'ImageController@select')
-        ->name('products.images.select')->middleware('can:roles:products.images.select');
-    //Products
-    Route::resource('products', 'ProductController');
-    Route::get('/products/{id}','ProductController@show');
-    //Categories
-    Route::resource('categories', 'CategoryController');
-    //SubCategories
-    Route::resource('subcategories', 'SubcategoriesController');
+        ->name('products.images.select');
+    //Conjunto rutas Products
+    Route::get('products.index','ProductController@index')->name('products.index');
+    Route::get('products.create','ProductController@create')->name('products.create');
+    Route::get('products/{product}/edit','ProductController@edit')->name('products.edit');
+    Route::post('products/{product}/edit','ProductController@update')->name('products.update');
+
+    Route::get('products/{product}/','ProductController@show')->name('products.show');
+
+    Route::delete('products/{product}','ProductController@destroy')->name('products.destroy');
+
+    // Conjunto rutas Categories
+
+    Route::get('categories.index','CategoryController@index')->name('categories.index');
+    Route::get('categories.create','CategoryController@create')->name('categories.create');
+    Route::get('categories/{category}/edit','CategoryController@edit')->name('categories.edit');
+    Route::post('categories/{category}/edit','CategoryController@update')->name('categories.update');
+
+    Route::get('categories/{category}/','CategoryController@show')->name('categories.show');
+
+    Route::delete('categories/{category}','CategoryController@destroy')->name('categories.destroy');
+
     //Users
-    Route::resource('users', 'UserController');
+    Route::get('users.index','UserController@index')->name('users.index');
+    Route::get('users/{user}/edit','UserController@edit')->name('users.edit');
+    Route::post('users/{user}/edit','UserController@update')->name('users.update');
+
+    Route::get('users/{user}/','UserController@show')->name('users.show');
+
+    Route::delete('users/{user}','UserController@destroy')->name('users.destroy');
+
+
 });

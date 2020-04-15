@@ -63,32 +63,6 @@
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col-md-3">
-                        <div class="position-relative form-group">
-                            <h2>Lista de roles</h2>
-                            <div class="form-group">
-                                <ul class="list-unstyled">
-                                    @foreach ($roles as $role)
-                                    <li>
-                                        <label>
-                                            <input type="checkbox" name="roles[]" value="{{ $role->id }}"
-                                                @if($user->roles->contains($role->id))
-                                            checked=checked
-                                            @endif>
-                                            {{ $role->name }}
-                                            <em>{{ $role->description ?: 'Sin descripción' }}</em>
-                                        </label>
-                                    </li>
-
-                                    @endforeach
-                                </ul>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
                     <div class=" form-group col-sm-4">
                         <button class="mb-1 mr-1 btn btn-warning" type="submit">Editar Usuario</button>
                         <a href="{{ route('users.index') }}" class="mb-2 mr-2 btn btn-danger">Cancelar</a>
