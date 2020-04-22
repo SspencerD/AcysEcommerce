@@ -35,10 +35,10 @@
                     </thead>
                     <tbody>
                         @foreach ($notices as $notice)
-                            
-                      
+
+
                         <tr>
-                            
+
                             <th>{{ $notice->id }}</th>
                             <th><img src="{{ $notice->featured_image_url}}" width="100"></th>
                             <th>{{ $notice->name }}</th>
@@ -54,7 +54,7 @@
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
 
-                                        <a href="#"
+                                        <a href="{{ route('news.show',$notice->id) }}"
                                             class="dropdown-item btn btn-primary" type="button"><i
                                                 class="far fa-eye"></i>
                                             Ver</a>
@@ -66,7 +66,7 @@
 
 
                                         <form action="{{ route('news.destroy', $notice->id) }}" method="post">
-                                            @csrf @method('DELETE')
+                                            @csrf
 
                                             <button class="dropdown-item btn btn-danger" type="submit"><i
                                                     class="fas fa-trash"></i>
@@ -80,7 +80,7 @@
                     </tbody>
                 </table>
                 <div class="align-content-md-center">
-                    
+
                 </div>
 
             </div>

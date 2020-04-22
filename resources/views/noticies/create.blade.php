@@ -14,7 +14,7 @@
             @endforeach
         </ul>
         @endif
-        
+
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Creación de la Noticia</h1>
             <a href="{{ route('news') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
@@ -23,7 +23,7 @@
         </div>
         <div class="card shadow mb-4">
             <div class="card-body">
-                <form method="POST" action="{{route('news.store') }}" enctype="multipart/form-data">
+                <form method="POST" action="{{route('news.store')}}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-row">
                         <div class="col-md-3">

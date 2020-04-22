@@ -12,6 +12,7 @@
 */
 
 use App\Http\Controllers\HomeController;
+Route::get('/','Homecontroller@index')->name('comienzo');
 Route::get('principio','InicioController@inicio')->name('principio');
 Route::get('inicio', 'WelcomeController@index')->name('inicio');
 Route::get('search','SearchController@show')->name('search');
@@ -19,6 +20,7 @@ Route::get('/products/json','SearchController@data');
 //otros
 Route::get('contacto', 'WelcomeController@contacto')->name('contacto');
 Route::get('nosotros', 'WelcomeController@nosotros')->name('nosotros');
+Route::get('noticias','WelcomeController@noticias')->name('noticias');
 
 Auth::routes();
 
@@ -93,8 +95,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('noticies/create','NoticeController@create')->name('news.create');
     Route::post('/noticies','NoticeController@store')->name('news.store');
     Route::get('/noticies/{notice}/edit','NoticeController@edit')->name('news.edit');
-    Route::post('/noticies','NoticeController@update')->name('news.update');
-    Route::delete('/noticies/{notice}','NoticeController@destroy')->name('news.destroy');
+    Route::post('/noticies/{notice}/edit','NoticeController@update')->name('news.update');
+    Route::post('/noticies/{notice}','NoticeController@destroy')->name('news.destroy');
+    Route::get('noticies/{notice}/','NoticeController@show')->name('news.show');
 
     //roles
     Route::get('roles/index','RoleController@index')->name('roles');

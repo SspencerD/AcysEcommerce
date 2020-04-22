@@ -27,21 +27,21 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('comienzo');
     }
 
     public function perfil()
     {
         $carts = Cart::where('user_id', Auth::user()->id)->where('status', 'paid')->get();
-        
+
                 return view('perfil')->with(compact('carts'));
     }
 
-    public function edit(Request $request)
+    public function edit(Request $request, User $user)
     {
-        $user = $request->all();
+        $user = Auth::user()->id;
 
-        return Auth::user()->update($user);
+        return view('edits.edit-user',compact('user'));
 
 
 

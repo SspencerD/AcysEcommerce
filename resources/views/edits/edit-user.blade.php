@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 
-@section('title','Mi Perfil |' .config('app.name'))
+@section('title','editando usuario|' .config('app.name'))
 
 
 @section('content')
@@ -20,48 +20,49 @@
                 <span>todos los campos son obligatorios</span>
                 <div class="row">
                     <form action="#" method="post">
+                        @csrf
                         <div class="col-lg-4">
                             <div class="input-group">
                                 <label for="Nombre">Nombre</label>
                                 <input type="text" class="form-control" name="name"
-                                    value=" {{ auth()->user()->name }}{{ old('name',$user->name) }}" required>
+                                    value=" {{ auth()->user()->name }}{{ old('name') }}" required>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="input-group">
                                 <label for="Apellido">Apellido</label>
                                 <input type="text" class="form-control" name="lastname"
-                                    value="{{ auth()->user()->lastname }}{{ old('lastname',$user->lastname) }}"
+                                    value="{{ auth()->user()->lastname }}{{ old('lastname') }}"
                                     required>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="input-group">
                                 <label for="Rut">Rut</label>
-                                <input type="text" class="form-control" name="rut" value="{{ auth()->user()->rut }}{{ old('rut',$user->rut) }}"
+                                <input type="text" class="form-control" name="rut" value="{{ auth()->user()->rut }}{{ old('rut') }}"
                                     required>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="input-group">
-                                
+
                                 <label for="Rut">Password</label>
                                 <small class="muted-table"> Modificar solo si desea cambiar contraseña</small>
                                 <input type="password" class="form-control" name="password"
-                                    value="{{ bcrypt(auth()->user()->password) }}{{ old('password',$user->password) }}" >
+                                    value="{{ bcrypt(auth()->user()->password) }}{{ old('password') }}" >
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="input-group">
                                 <label for="Rut">Repetir Password</label>
-                                <input type="password" class="form-control" name="confirmation_password" value="{{ bcrypt('') }}" >
+                                <input type="password" class="form-control" name="confirmation_password" value="{{ bcrypt(auth()->user()->password) }}{{ old('password') }}" >
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="input-group">
                                 <label>Telefono</label>
                                 <input type="text" class="form-control" name="phone"
-                                    value="{{ auth()->user()->phone }}{{ old('phone',$user->phone) }}" required>
+                                    value="{{ auth()->user()->phone }}{{ old('phone') }}" required>
                             </div>
                             <div class="col-auto"></div>
                         </div>
@@ -69,7 +70,7 @@
                             <div class="input-group">
                                 <label>Dirección</label>
                                 <input type="text" class="form-control" name="address"
-                                    value="{{ auth()->user()->address }}{{ old('address',$user->address) }}" required>
+                                    value="{{ auth()->user()->address }}{{ old('address') }}" required>
                             </div>
                             <div class="col-auto"></div>
                         </div>
@@ -77,7 +78,7 @@
                             <div class="input-group">
                                 <label>Correo</label>
                                 <input type="text" class="form-control" name="email"
-                                    value="{{ auth()->user()->email }}{{ old('email',$user->email) }}" required>
+                                    value="{{ auth()->user()->email }}{{ old('email') }}" required>
                             </div>
                         </div>
                         <div class="col-auto"></div>
@@ -92,3 +93,4 @@
 
 
 @endsection
+

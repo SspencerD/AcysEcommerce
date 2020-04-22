@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Product;
+use App\Notice;
 use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
@@ -27,4 +28,10 @@ class WelcomeController extends Controller
     {
         return view('nosotros');
     }
+    public function noticias()
+    {
+        $noticias = Notice::all();
+        return view('noticias',compact('noticias'));
+    }
+
 }

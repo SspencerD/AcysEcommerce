@@ -13,6 +13,7 @@
 
     <!-- Google font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{{ url('images/logo.png') }}" sizes="32x32">
 
     <!-- Bootstrap -->
     <link type="text/css" rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" />

@@ -11,12 +11,11 @@ class NoticeController extends Controller
     public function index()
     {
         $notices = Notice::paginate();
-        return view('noticies.index',compact('notices'));
+        return view('noticies.index', compact('notices'));
     }
     public function create()
     {
         return view('noticies.create');
-
     }
     public function store(Request $request)
     {
@@ -37,14 +36,13 @@ class NoticeController extends Controller
             }
         }
         return redirect()
-        ->route('news')
-        ->with('success','Noticia creada con exito!');
+            ->route('news')
+            ->with('success', 'Noticia creada con exito!');
     }
     public function show(Notice $notice)
     {
-        $notice->paginate(6);
 
-        return view('noticies\show', compact('notice'));
+        return view('noticies.show')->with(compact('notice'));
     }
 
     public function edit(Notice $notice)
@@ -87,4 +85,3 @@ class NoticeController extends Controller
             ->with('info', 'Noticia Eliminada con exito!');
     }
 }
-

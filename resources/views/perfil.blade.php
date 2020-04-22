@@ -116,7 +116,7 @@
                 </li>
             </ul>
             <div class="tab-content clearfix">
-                <div class="tab-pane active" id="carrito">
+                <div class="tab-pane " id="carrito">
                     <h5>Tu carrito</h5>
                     <table class="table">
                         <thead class="thead-dark">
@@ -181,7 +181,7 @@
                                 class="fas fa-cart-arrow-down"></i> Realizar compra</button>
                     </form>
                 </div>
-                <div class="tab-pane" id="pedido">
+                <div class="tab-pane active" id="pedido">
                     <div class="row">
                         <div class="form-group-lg">
                             <h5>Tus pedidos realizados</h5>
