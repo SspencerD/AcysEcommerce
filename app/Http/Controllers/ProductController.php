@@ -72,7 +72,17 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
-        $product->delete();
+
+        try {
+            /*  */
+            $product->delete();
+
+        } catch (\Illuminate\Database\QueryException $e) {
+            dd($e);
+            
+
+        }
+ 
         return back()->with('info', 'Producto borrado con exito');
     }
 }

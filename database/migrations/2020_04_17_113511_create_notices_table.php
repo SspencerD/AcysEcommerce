@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductImagesTable extends Migration
+class CreateNoticesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,18 @@ class CreateProductImagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_images', function (Blueprint $table) {
+        Schema::create('notices', function (Blueprint $table) {
             $table->bigIncrements('id');
-
-            $table->string('image');
-            $table->boolean('featured')->default(false);
-
-            //FK
-            $table->bigInteger("product_id");
+            $table->string('name');
+            $table->text('long_description');
+            $table->string('description')->nullable();
+            $table->string('url')->nullable();
+            $table->string('image')->nullable();
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
-
 
     /**
      * Reverse the migrations.
@@ -34,6 +33,8 @@ class CreateProductImagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_images');
+        
+        Schema::dropIfExists('notices');
+        
     }
 }

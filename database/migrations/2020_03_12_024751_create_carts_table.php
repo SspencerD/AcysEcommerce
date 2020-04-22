@@ -25,6 +25,8 @@ class CreateCartsTable extends Migration
             //fk user
             $table->unsignedBigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
+
+            $table->bigInteger("order_id")->nullable();
         });
     }
 

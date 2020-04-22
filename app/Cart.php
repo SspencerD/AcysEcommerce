@@ -11,6 +11,12 @@ class Cart extends Model
         return $this->hasMany(CartDetail::class);
     }
 
+    public function order()
+    {
+        return $this->hasOne(Order::class);
+
+    }
+
     public function getTotalAttribute()
     {
         $total = 0;

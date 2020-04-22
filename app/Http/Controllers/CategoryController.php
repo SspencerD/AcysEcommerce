@@ -25,6 +25,8 @@ class CategoryController extends Controller
     }
     public function store(Request $request)
     {
+        $this->validate($request,Category::$rules , Category::$message);
+
         $category = Category::create($request->all());
 
         if ($request->hasfile('image')) {
@@ -78,7 +80,7 @@ class CategoryController extends Controller
     }
     public function destroy(Category $category)
     {
-        $category->products()->delete();
+        $category->delete();
 
         return redirect()->route('categories.index')
             ->with('info', 'Categoria Eliminada con exito!');

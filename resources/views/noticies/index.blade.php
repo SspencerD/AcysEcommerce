@@ -9,8 +9,9 @@
 
     @include('includes.flash-messages')
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Listado de producto</h1>
-    <a href="{{ route('products.create') }}" class=" btn btn-success bt-lg pull-right"><i
+    <h1 class="h3 mb-2 text-gray-800">Listado de noticias</h1>
+
+    <a href="{{ route('news.create')  }} " class=" btn btn-success bt-lg pull-right"><i
             class="far fa-plus-square"></i> Crear</a>
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -23,31 +24,28 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Codigo</th>
+                            <th>Imagen</th>
                             <th>Nombre</th>
-                            <th>Stock</th>
-                            <th>provedor</th>
-                            <th>ref provedor</th>
-                            <th>lote</th>
-                            <th>precio</th>
-                            <th>prec venta</th>
-                            <th>Categoria</th>
                             <th>Descripción</th>
+                            <th>Descripción larga</th>
+                            <th>Url (opcional) </th>
+                            <th>Fecha de creación </th>
                             <th>Acciones</th>
                         </tr>
-                        @foreach($products as $product)
+                    </thead>
+                    <tbody>
+                        @foreach ($notices as $notice)
+                            
+                      
                         <tr>
-                            <th>{{ $product->id }}</th>
-                            <th>{{ $product->code }}</th>
-                            <th>{{ $product->name }}</th>
-                            <th>{{ $product->stock }} unidades </th>
-                            <th>{{ $product->provider }}</th>
-                            <th>{{ $product->provider_code }}</th>
-                            <th>{{ $product->lote }}</th>
-                            <th> $ {{ $product->price }}</th>
-                            <th> $ {{ $product->purchase_price }}</th>
-                            <th>{{ $product->category_name }}</th>
-                            <th>{{ $product->description }}</th>
+                            
+                            <th>{{ $notice->id }}</th>
+                            <th><img src="{{ $notice->featured_image_url}}" width="100"></th>
+                            <th>{{ $notice->name }}</th>
+                            <th>{{ $notice->description }}</th>
+                            <th>{{ $notice->long_description }}</th>
+                            <th>{{ $notice->url }}</th>
+                            <th>{{ $notice->created_at}}</th>
                             <th>
                                 <div class="dropdown">
                                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
@@ -56,26 +54,19 @@
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
 
-                                        <a href="{{ route('products.show', $product->id) }}"
+                                        <a href="#"
                                             class="dropdown-item btn btn-primary" type="button"><i
                                                 class="far fa-eye"></i>
                                             Ver</a>
 
-
-                                        <a href="{{ route('products.images', $product->id) }}"
-                                            class="dropdown-item btn btn-primary" type="button"><i
-                                                class="far fa-image"></i>
-                                            Imagenes</a>
-
-
-                                        <a href="{{ route('products.edit', $product->id) }}"
+                                        <a href="{{ route('news.edit', $notice->id) }}"
                                             class="dropdown-item btn btn-warning" type="button"><i
                                                 class="far fa-edit"></i>
                                             Editar</a>
 
 
-                                        <form action=" {{ route('products.destroy', $product->id) }}" method="post">
-                                            @csrf
+                                        <form action="{{ route('news.destroy', $notice->id) }}" method="post">
+                                            @csrf @method('DELETE')
 
                                             <button class="dropdown-item btn btn-danger" type="submit"><i
                                                     class="fas fa-trash"></i>
@@ -86,10 +77,10 @@
                             </th>
                         </tr>
                         @endforeach
-                        </tbody>
+                    </tbody>
                 </table>
                 <div class="align-content-md-center">
-                    {{$products->links() }}
+                    
                 </div>
 
             </div>

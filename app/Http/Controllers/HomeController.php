@@ -33,7 +33,8 @@ class HomeController extends Controller
     public function perfil()
     {
         $carts = Cart::where('user_id', Auth::user()->id)->where('status', 'paid')->get();
-        return view('perfil')->with(compact('carts'));
+        
+                return view('perfil')->with(compact('carts'));
     }
 
     public function edit(Request $request)

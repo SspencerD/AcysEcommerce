@@ -21,6 +21,9 @@ class CreateOrdersTable extends Migration
             $table->float('amount');
             $table->enum('status', ['pending', 'cancelled', 'completed']);	
             $table->integer('payment_platform_id');
+
+            $table->bigInteger("cart_id")->nullable();
+
             $table->timestamps();
         });
     }

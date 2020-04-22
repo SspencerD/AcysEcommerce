@@ -27,8 +27,9 @@ class CreateProductsTable extends Migration
             $table->float('price');
             $table->float('purchase_price')->nullable();
 
-            $table->unsignedBigInteger('category_id')->unsigned()->nullable();
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->bigInteger("category_id")->nullable();
+
+            
 
             $table->softDeletes();
             $table->timestamps();

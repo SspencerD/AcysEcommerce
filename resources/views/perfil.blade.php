@@ -61,47 +61,49 @@
                 <div class="panel-body">
                     <table style="border: 1px">
                         <tbody>
-                                  <tr>
-                                      <th>Nombre:</th>
-                                      <td></td>
-                                      <td></td>
-                                      <td></td>
-                                      <td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{ auth()->user()->name}} {{ auth()->user()->lastname}}</td>
-                                </tr>
-                                <tr>
-                                    <th>RUT:</th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{ auth()->user()->rut}}</td>
-                                </tr>
-                                <tr>
-                                    <th>Dirección:</th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{ auth()->user()->address}}</td>
-                                </tr>
-                                <tr>
-                                    <th>Ciudad:</th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{ auth()->user()->rut}}</td>
-                                </tr>
-                                <tr>
-                                    <th>Correo:</th>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{ auth()->user()->email}}</td>
-                                </tr>
+                            <tr>
+                                <th>Nombre:</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{ auth()->user()->name}}
+                                    {{ auth()->user()->lastname}}</td>
+                            </tr>
+                            <tr>
+                                <th>RUT:</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{ auth()->user()->rut}}</td>
+                            </tr>
+                            <tr>
+                                <th>Dirección:</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{ auth()->user()->address}}</td>
+                            </tr>
+                            <tr>
+                                <th>Ciudad:</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{ auth()->user()->rut}}</td>
+                            </tr>
+                            <tr>
+                                <th>Correo:</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {{ auth()->user()->email}}</td>
+                            </tr>
                         </tbody>
-          
+
                     </table>
                     <tr></tr>
-                   
-                    <tr><a class=" btn btn-circle btn-group-lg btn-info " href="{{ route('edit-user',auth()->user()->id) }}">Editar</a></tr>
+
+                    <tr><a class=" btn btn-circle btn-group-lg btn-info "
+                            href="{{ route('edit-user',auth()->user()->id) }}">Editar</a></tr>
                 </div>
             </div>
 
@@ -189,24 +191,31 @@
                                         <td>Id</td>
                                         <td>Fecha de compra</td>
                                         <td>fecha de Entrega</td>
+                                        <td>Monto total</td>
+
                                         <td>Estado</td>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($carts as $cart)
                                     <tr>
-                                        @foreach($carts as $cart)
+
                                         <td>{{ $cart->id }}</td>
                                         <td>{{ $cart->order_date }}</td>
                                         <td>{{  $cart->arrived_order }}</td>
+                                        <td> $ {{ $cart->order->amount }}</td>
                                         @if($cart->status == 'paid')
-                                        <td class="alert alert-success" role="alert">{{ $cart->status }}</td>
+                                        <td class="alert alert-success" role="alert">Pagado</td>
+
                                         @elseif($cart->status =='pending')
-                                        <td class="alert alert-warning" role="alert">{{ $cart->status }}</td>
+                                        <td class="alert alert-warning" role="alert">Pendiente</td>
                                         @else
-                                        <td class="alert alert-danger" role="alert">{{ $cart->status }}</td>
+                                        <td class="alert alert-danger" role="alert">Cancelado</td>
                                         @endif
-                                        @endforeach
+
                                     </tr>
+                                    @endforeach
+                                    <br>
 
                                 </tbody>
                             </table>

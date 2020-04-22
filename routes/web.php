@@ -16,6 +16,9 @@ Route::get('principio','InicioController@inicio')->name('principio');
 Route::get('inicio', 'WelcomeController@index')->name('inicio');
 Route::get('search','SearchController@show')->name('search');
 Route::get('/products/json','SearchController@data');
+//otros
+Route::get('contacto', 'WelcomeController@contacto')->name('contacto');
+Route::get('nosotros', 'WelcomeController@nosotros')->name('nosotros');
 
 Auth::routes();
 
@@ -45,10 +48,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/edits/edit-user/{id}','HomeController@edit')->name('edit-user');
 
-    //otros
-    Route::get('contacto','WelcomeController@contacto')->name('contacto');
-    Route::get('nosotros', 'WelcomeController@nosotros')->name('nosotros');
-
     //dashboard
     Route::get('dashboard', 'DashboardController@dashboard')->name('admin.dashboard');
     //roles
@@ -64,19 +63,19 @@ Route::middleware(['auth'])->group(function () {
         ->name('products.images.select');
     //Conjunto rutas Products
     Route::get('products.index','ProductController@index')->name('products.index');
-    Route::get('products.create','ProductController@create')->name('products.create');
+    Route::get('products/create','ProductController@create')->name('products.create');
+    Route::post('/products','ProductController@store')->name('products.store');
     Route::get('products/{product}/edit','ProductController@edit')->name('products.edit');
     Route::post('products/{product}/edit','ProductController@update')->name('products.update');
-
     Route::get('products/{product}/','ProductController@show')->name('products.show');
-
-    Route::delete('products/{product}','ProductController@destroy')->name('products.destroy');
+    Route::post('products/{product}','ProductController@destroy')->name('products.destroy');
 
     // Conjunto rutas Categories
 
     Route::get('categories.index','CategoryController@index')->name('categories.index');
     Route::get('categories.create','CategoryController@create')->name('categories.create');
     Route::get('categories/{category}/edit','CategoryController@edit')->name('categories.edit');
+    Route::post('/categories','CategoryController@store')->name('categories.store');
     Route::post('categories/{category}/edit','CategoryController@update')->name('categories.update');
 
     Route::get('categories/{category}/','CategoryController@show')->name('categories.show');
@@ -87,10 +86,21 @@ Route::middleware(['auth'])->group(function () {
     Route::get('users.index','UserController@index')->name('users.index');
     Route::get('users/{user}/edit','UserController@edit')->name('users.edit');
     Route::post('users/{user}/edit','UserController@update')->name('users.update');
-
     Route::get('users/{user}/','UserController@show')->name('users.show');
-
     Route::delete('users/{user}','UserController@destroy')->name('users.destroy');
+    //Noticias
+    Route::get('noticies/index','NoticeController@index')->name('news');
+    Route::get('noticies/create','NoticeController@create')->name('news.create');
+    Route::post('/noticies','NoticeController@store')->name('news.store');
+    Route::get('/noticies/{notice}/edit','NoticeController@edit')->name('news.edit');
+    Route::post('/noticies','NoticeController@update')->name('news.update');
+    Route::delete('/noticies/{notice}','NoticeController@destroy')->name('news.destroy');
 
-
+    //roles
+    Route::get('roles/index','RoleController@index')->name('roles');
+    Route::get('/roles/create','RoleController@create')->name('roles.create');
+    Route::post('/roles','RoleController@store')->name('roles.store');
+    Route::get('/roles/{role}/edit','RoleController@edit')->name('roles.edit');
+    Route::post('/roles/{role}/edit','RoleController@update')->name('roles.update');
+    Route::delete('/roles/{role}','RoleController@destroy')->name('roles.destroy');
 });

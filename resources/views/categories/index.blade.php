@@ -12,10 +12,10 @@
     {{--  fin mensajes flash  --}}
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Listado de categorias</h1>
-    @can('products.create')
+    
     <a href="{{ route('categories.create')  }} " class=" btn btn-success bt-lg pull-right"><i
             class="far fa-plus-square"></i> Crear</a>
-    @endcan
+    
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
