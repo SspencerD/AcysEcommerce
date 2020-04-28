@@ -12,6 +12,8 @@
 */
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProductController;
+
 Route::get('/','Homecontroller@index')->name('comienzo');
 Route::get('principio','InicioController@inicio')->name('principio');
 Route::get('inicio', 'WelcomeController@index')->name('inicio');
@@ -73,6 +75,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('products/{product}/edit','ProductController@update')->name('products.update');
     Route::get('products/{product}/','ProductController@show')->name('products.show');
     Route::post('products/{product}','ProductController@destroy')->name('products.destroy');
+    Route::post('import-list-excel','ProductController@importExcel')->name('products.imports.excel');
 
     // Conjunto rutas Categories
 

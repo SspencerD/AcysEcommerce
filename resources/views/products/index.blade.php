@@ -16,14 +16,19 @@
 
     <!-- importación archivos-->
     <div class="form-group-sm" class="float-right">
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="{{ route('products.imports.excel') }}" method="post" enctype="multipart/form-data">
             @csrf
+
+            @if(Session::has('info'))
+
+            <p>{{ Session::get('info') }}</p>
+            @endif
 
             <input type="file" name="file" class=" btn btn-success">
 
-            <a href="{{ route('products.create') }}" class=" btn btn-success bt-lg"><i
+            <button class=" btn btn-success bt-lg"><i
                     class="far fa-file-excel"></i>
-                importar excel</a>
+                importar excel</button>
         </form>
     </div>
     <div class="card shadow mb-4">
