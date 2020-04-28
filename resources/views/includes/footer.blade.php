@@ -24,7 +24,7 @@
                         <h3 class="footer-title">Información</h3>
                         <ul class="footer-links">
                             <li><a href="#"></a></li>
-                            <li><a href="#">Contactanos</a></li>
+                            <li><a href="{{ route('contacto') }}">Contactanos</a></li>
                             <li><a href="#">Politica de compra</a></li>
                             <li><a href="#">Ordenes y devolciones</a></li>
                             <li><a href="#">Terminos y condiciones</a></li>
@@ -36,9 +36,8 @@
                     <div class="footer">
                         <h3 class="footer-title">Servicio</h3>
                         <ul class="footer-links">
-                            <li><a href="#">Mi cuenta</a></li>
-                            <li><a href="#">Mi Carrito</a></li>
-                            <li><a href="#">Ayuda</a></li>
+                            <li><a href="{{ route('perfil') }}">Mi cuenta</a></li>
+                            <li><a href="{{ route('perfil') }}">Mi Carrito</a></li>
                         </ul>
                     </div>
                 </div>

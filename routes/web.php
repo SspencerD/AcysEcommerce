@@ -48,7 +48,9 @@ Route::middleware(['auth'])->group(function () {
     //perfil
     Route::get('perfil', 'HomeController@perfil')->name('perfil');
 
+    //edición de usuario
     Route::get('/edits/edit-user/{id}','HomeController@edit')->name('edit-user');
+    Route::post('/edits/user', 'HomeController@store')->name('edits.store');
 
     //dashboard
     Route::get('dashboard', 'DashboardController@dashboard')->name('admin.dashboard');
@@ -100,7 +102,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('noticies/{notice}/','NoticeController@show')->name('news.show');
 
     //roles
-    Route::get('roles/index','RoleController@index')->name('roles');
+    Route::get('roles.index','RoleController@index')->name('roles');
     Route::get('/roles/create','RoleController@create')->name('roles.create');
     Route::post('/roles','RoleController@store')->name('roles.store');
     Route::get('/roles/{role}/edit','RoleController@edit')->name('roles.edit');

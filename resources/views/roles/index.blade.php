@@ -36,7 +36,7 @@
                             <th>{{ $role->name }} </th>
                             <th>{{ $role->slug }}</th>
                             <th>{{ $role->description }} </th>
-                            <th>{{ $role->full-access }} </th>
+                            <th>{{ $role['full-access']}} </th>
                             <th>
                                 <div class="dropdown">
                                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"

@@ -10,8 +10,11 @@ use App\Order;
 use App\Product;
 use Carbon\Carbon;
 use Session;
+use Illuminate\Support\Facades\Mail;
 use PSTPagoFacil\SignatureHelper;
 use App\Cart;
+use App\Mail\NewOrder;
+
 class WebPayService
 {
     private function createSignature($data, $secretKey)
@@ -68,7 +71,6 @@ class WebPayService
 
 
         $data["s"] = $this->createSignature($data, $secretKey);
-
         $apiRequest = $client->post($base_uri . '/payment/create', [
             'form_params' => $data
         ]);
@@ -104,6 +106,10 @@ class WebPayService
 
         if ($response->status == 1) {
             $order->status = 'pending';
+            $user = auth()->user();
+            $cart = $user->cart;
+            $cart->order_date = Carbon::now();
+            $cart->save();
         } else if ($response->status == 2) {
             $order->status = 'completed';
             //Cambiamos el estado del carro de compras
@@ -141,7 +147,10 @@ class WebPayService
         } else if ($order->status == 'completed') {
             $message = 'Tu orden ha sido completada con éxito.';
             $type = 'success';
+
+            Mail::to(Auth::user()->email)->send(new NewOrder(Auth::user(), Auth::user()->cart));
         }
+         
         return redirect()->route('perfil')->with($type, $message);
     }
 

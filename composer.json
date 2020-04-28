@@ -16,6 +16,7 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^1.2",
         "laravelcollective/html": "^6.0",
+        "nesbot/carbon": "^2.32",
         "pstpagofacil/sdk-apis-php-signature": "dev-master"
     },
     "require-dev": {

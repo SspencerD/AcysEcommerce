@@ -104,7 +104,7 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Addons
+                Configuración
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -112,18 +112,11 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Pages</span>
+                    <span>Configuraciones</span>
                 </a>
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
-                        <a class="collapse-item" href="register.html">Register</a>
-                        <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-                        <div class="collapse-divider"></div>
-                        <h6 class="collapse-header">Other Pages:</h6>
-                        <a class="collapse-item" href="404.html">404 Page</a>
-                        <a class="collapse-item" href="blank.html">Blank Page</a>
+                        <a class="collapse-item" href="{{ route('roles') }}">Roles</a>
                     </div>
                 </div>
             </li>
@@ -432,6 +425,30 @@
             {{--  Toastr  --}}
             <script src="{{ url('https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js') }}">
             </script>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+            {{-- <script>
+                var array_values = "{{ $array_values}}"
+                var months = "{{ $months }}"
+                var ctx = document.getElementById('myChart').getContext('2d');
+                var chart = new Chart(ctx, {
+                // The type of chart we want to create
+                type: 'line',
+                
+                // The data for our dataset
+                data: {
+                        labels: months,
+                        datasets: [{
+                        label: 'Montos',
+                        backgroundColor: 'rgb(255, 99, 132)',
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: array_values
+                    }]
+                },
+                
+                // Configuration options go here
+                options: {}
+                });
+            </script> --}}
 
 
 

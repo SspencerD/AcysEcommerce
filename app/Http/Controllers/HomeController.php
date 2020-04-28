@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\CartDetail;
 use App\Cart;
 use App\User;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,7 +18,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        
     }
 
     /**
@@ -37,14 +38,24 @@ class HomeController extends Controller
                 return view('perfil')->with(compact('carts'));
     }
 
-    public function edit(Request $request, User $user)
+    public function edit()
     {
         $user = Auth::user()->id;
 
         return view('edits.edit-user',compact('user'));
 
-
-
     }
 
+    public function store(Request $request) {
+        $user = Auth::user();
+        $user->name = $request->name;
+        $user->lastname = $request->lastname;
+        $user->rut = $request->rut;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->email = $request->email;
+        $user->save();
+
+        return redirect()->back()->with('success','Usuario editado correctamente!');
+    }
 }

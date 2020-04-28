@@ -6,6 +6,7 @@
 
 @section('content')
 @include('includes.menu')
+@include('includes.flash-messages')
 <div class="section">
     <!-- container -->
     <div class="container">
@@ -19,7 +20,8 @@
             <div class="form-group-lg">
                 <span>todos los campos son obligatorios</span>
                 <div class="row">
-                    <form action="#" method="post">
+                    
+                    <form action="{{ route('edits.store') }}" method="post">
                         @csrf
                         <div class="col-lg-4">
                             <div class="input-group">
@@ -41,21 +43,6 @@
                                 <label for="Rut">Rut</label>
                                 <input type="text" class="form-control" name="rut" value="{{ auth()->user()->rut }}{{ old('rut') }}"
                                     required>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="input-group">
-
-                                <label for="Rut">Password</label>
-                                <small class="muted-table"> Modificar solo si desea cambiar contraseña</small>
-                                <input type="password" class="form-control" name="password"
-                                    value="{{ bcrypt(auth()->user()->password) }}{{ old('password') }}" >
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="input-group">
-                                <label for="Rut">Repetir Password</label>
-                                <input type="password" class="form-control" name="confirmation_password" value="{{ bcrypt(auth()->user()->password) }}{{ old('password') }}" >
                             </div>
                         </div>
                         <div class="col-lg-4">
