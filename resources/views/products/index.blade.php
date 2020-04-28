@@ -10,9 +10,22 @@
     @include('includes.flash-messages')
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Listado de producto</h1>
-    <a href="{{ route('products.create') }}" class=" btn btn-success bt-lg pull-right"><i
+    <a href="{{ route('products.create') }}" class=" btn btn-success bt-lg float-left"><i
             class="far fa-plus-square"></i> Crear</a>
     <!-- DataTales Example -->
+
+    <!-- importación archivos-->
+    <div class="form-group-sm" class="float-right">
+        <form action="" method="post" enctype="multipart/form-data">
+            @csrf
+
+            <input type="file" name="file" class=" btn btn-success">
+
+            <a href="{{ route('products.create') }}" class=" btn btn-success bt-lg"><i
+                    class="far fa-file-excel"></i>
+                importar excel</a>
+        </form>
+    </div>
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary"></h6>
