@@ -18,7 +18,6 @@
                         <div class="form-group">
                             <input class="input @error('name') is-invalid @enderror" id="name" type="text" name="name"
                                 placeholder="Nombre" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
                             @error('name')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -30,8 +29,8 @@
                                 value="{{ old('lastname') }}" required autocomplete="lastname" autofocus>
                         </div>
                         <div class="form-group">
-                            <input class="input" type="text" name="rut" placeholder="Rut" value="{{ old('rut') }}"
-                                required autocomplete="rut" autofocus>
+                            <input class="input" type="text" name="rut" id="rut" required oninput="checkRut(this)"
+                             value="{{ old('rut') }}">
                         </div>
                         <div class="form-group">
                             <input id="email" class="input @error('email') is-invalid @enderror" type="email"
