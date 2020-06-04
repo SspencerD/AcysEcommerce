@@ -15,16 +15,22 @@ class CategoryController extends Controller
     }
     public function index()
     {
+        $this->authorize('haveaccess', 'categories.index');
+
         $categories = Category::paginate();
 
         return view('categories.index', compact('categories'));
     }
     public function create()
     {
+        $this->authorize('haveaccess', 'categories.create');
+
         return view('categories.create');
     }
     public function store(Request $request)
     {
+        $this->authorize('haveaccess', 'categories.create');
+
         $this->validate($request,Category::$rules , Category::$message);
 
         $category = Category::create($request->all());
@@ -47,16 +53,23 @@ class CategoryController extends Controller
     }
     public function show(Category $category)
     {
+        
+        $this->authorize('haveaccess', 'categories.show');
+
         $products = $category->products()->paginate(10);
 
         return view('categories\show', compact('category', 'products'));
     }
     public function edit(Category $category)
     {
+        $this->authorize('haveaccess', 'categories.edit');
+
         return view('categories.edit', compact('category'));
     }
     public function update(Request $request, Category $category)
     {
+        $this->authorize('haveaccess', 'categories.edit');
+
         $category->update($request->all());
 
         if ($request->hasfile('image')) {
@@ -80,6 +93,8 @@ class CategoryController extends Controller
     }
     public function destroy(Category $category)
     {
+        $this->authorize('haveaccess', 'categories.destroy');
+
         $category->delete();
 
         return redirect()->route('categories.index')

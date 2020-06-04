@@ -14,6 +14,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 
+
 Route::get('/','Homecontroller@index')->name('comienzo');
 Route::get('principio','InicioController@inicio')->name('principio');
 Route::get('inicio', 'WelcomeController@index')->name('inicio');
@@ -39,9 +40,10 @@ Route::delete('/cart', 'CartDetailController@destroy');
 //orden
 Route::post('order.update', 'CartController@update')->name('order.update');
 
+
 Route::middleware(['auth'])->group(function () {
 
-
+    Route::get('orders/{id}', 'CartController@detalle')->name('orders');
     //pago
     Route::get('/payments', 'PaymentController@index')->name('payments');
     Route::post('/payments/pay','PaymentController@pay')->name('pay');
@@ -50,14 +52,13 @@ Route::middleware(['auth'])->group(function () {
     //perfil
     Route::get('perfil', 'HomeController@perfil')->name('perfil');
 
-    //edición de usuario
+    //edición de usuarioo
     Route::get('/edits/edit-user/{id}','HomeController@edit')->name('edit-user');
     Route::post('/edits/user', 'HomeController@store')->name('edits.store');
 
     //dashboard
     Route::get('dashboard', 'DashboardController@dashboard')->name('admin.dashboard');
-    //roles
-    Route::resource('roles', 'RoleController');
+
     //Imagenes de producto
     Route::get('products/{product}/images', 'ImageController@index')
         ->name('products.images');
@@ -75,6 +76,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('products/{product}/edit','ProductController@update')->name('products.update');
     Route::get('products/{product}/','ProductController@show')->name('products.show');
     Route::post('products/{product}','ProductController@destroy')->name('products.destroy');
+    
     Route::post('import-list-excel','ProductController@importExcel')->name('products.imports.excel');
 
     // Conjunto rutas Categories
@@ -111,4 +113,27 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/roles/{role}/edit','RoleController@edit')->name('roles.edit');
     Route::post('/roles/{role}/edit','RoleController@update')->name('roles.update');
     Route::delete('/roles/{role}','RoleController@destroy')->name('roles.destroy');
+    Route::get('/roles/{role}/','RoleController@show')->name('roles.show');
+    // Slider Ferreteria
+    
+    Route::get('slideferre.index','SlideferController@index')->name('slideferreteria');
+    Route::get('slideferreteria.create', 'SlideferController@create')->name('slideferreteria.create');
+    Route::post('/sliderferreteria','SlideferController@store')->name('sildeferreteria.store');
+    Route::get('/slideferreteria/{slidefer}/edit','SlideferController@edit')->name('slideferreteria.edit');
+    Route::post('/slideferreteria/{slidefer}/edit', 'SlideferController@update')->name('slideferreteria.update');
+    Route::delete('/slideferreteria/{slidefer}', 'SlideferController@destroy')->name('slideferreteria.destroy');
+    Route::get('/slideferreteria/{slidefer}/', 'SlideferController@show')->name('slideferreteria.show');
+
+    //Slider Electronica
+    Route::get('slideferelect', 'SlideelecController@index')->name('slideferelect');
+    Route::get('slideferelect.create', 'SlideelecController@create')->name('slideferelect.create');
+    Route::post('/slideferelect', 'SlideelecController@store')->name('slideferelect.store');
+    Route::get('/slideferelect/{slideelect}/edit', 'SlideelecController@edit')->name('slideferelect.edit');
+    Route::post('/slideferelect/{slideelect}/edit', 'SlideelecController@update')->name('slideferelect.update');
+    Route::delete('/slideferelect/{slideelect}', 'SlideelecController@destroy')->name('slideferelect.destroy');
+    Route::get('/slideferelect/{slideelect}/', 'SlideelecController@show')->name('slideferelect.show');
+
+    //historial de compras
+    Route::get('/historicos/index','DashboardController@historicos')->name('historicos');
+    
 });

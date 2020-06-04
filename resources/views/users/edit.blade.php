@@ -13,7 +13,7 @@
     <div class="card shadow mb-4">
         <div class="card-body">
             <form method="POST" action="{{route('users.update',$user->id )}}" enctype="multipart/form-data">
-                @csrf @method('PUT')
+                @csrf
                 <div class="form-row">
                     <div class="col-md-3">
                         <div class="position-relative form-group">
@@ -59,6 +59,25 @@
                             <input name="email" id="email" placeholder="¿de que trata?" type="email"
                                 class="form-control" value="{{ old('email',$user->email) }}">
                         </div>
+                    </div>
+                </div>
+                <hr>
+                <h3>Asignación de Roles</h3>
+        
+                <div class="col-md-3">
+                    <div class="position-relative form-group">
+                        <label for="Roles"></label>
+                        <select class="form-control" name="roles" id="roles">
+                            @foreach($roles as $role)
+                            <option value="{{ $role->id }}"
+                                @isset($user->roles[0]->name)
+                                @if($role->name == $user->roles[0]->name)
+                                selected
+                                @endif
+                                @endisset
+                                >{{ $role->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                 </div>
                 <hr>

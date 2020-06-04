@@ -27,7 +27,7 @@
                                     <th scope="row"><img src="{{$detail->product->featured_image_url }}" alt="" height="90"></th>
                                     <td><h6>{{ $detail->product->name }}</h6></td>
                                     <td class="text-center"><h6>{{ $detail->quantity }}</h6></td>
-                                    <td><h6>$ {{ $detail->quantity * $detail->product->price}}</h6></td>
+                                    <td><h6>$ {{ number_format($detail->quantity * $detail->product->price,2)}}</h6></td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -45,19 +45,19 @@
                                     <h5>Total a pagar</h5>
                                 </div>
                                 <div class="col-sm offset-sm-5">
-                                    <h6 class="mt-2">$ {{ $totalProducts }}</h6>
-                                    <h6 class="mt-2">$ {{ $iva }}</h6>
+                                    <h6 class="mt-2">$ {{ number_format($totalProducts,2) }}</h6>
+                                    <h6 class="mt-2">$ {{ number_format($iva,2) }}</h6>
                                     <br>
-                                    <h6 class="mt-2">$ {{ $totalIva }}</p></h6>
+                                    <h6 class="mt-2">$ {{ number_format($totalIva,2) }}</p></h6>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-auto">
                                     <input type="hidden" name="value" value="{{ $totalIva }}">
                                     <input type="hidden" name="currency" value="CLP">
-                                    <small class="form-text text-muted">
+                                    {{-- <small class="form-text text-muted">
                                         Recuerde que cada plataforma tiene su forma de pago.
-                                    </small>
+                                    </small> --}}
                                 </div>
                             </div>
                             <div class="row mt-3">

@@ -28,6 +28,7 @@
                             <th>Telefonó</th>
                             <th>Dirección</th>
                             <th>Email</th>
+                            <th>Role(s)</th>
                             <th>Creado</th>
                             <th>Acciones</th>
                         </tr>
@@ -40,6 +41,11 @@
                             <th>{{ $user->phone }} </th>
                             <th>{{ $user->address }} </th>
                             <th>{{ $user->email }} </th>
+                            <th>
+                                @isset($user->roles[0]->name )
+                                    {{ $user->roles[0]->name }}
+                                @endisset
+                            </th>
                             <th>{{ $user->created_at }} </th>
                             <th>
                                 <div class="dropdown">

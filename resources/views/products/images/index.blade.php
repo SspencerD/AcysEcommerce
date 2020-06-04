@@ -6,8 +6,6 @@
 
 @include('includes.flash-messages')
 
-@endif
-@can('imageproducts.index')
 <form method="POST" action="" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
@@ -68,7 +66,6 @@
     </div>
     @endforelse
 </div>
-@endcan
 
 
 @endsection

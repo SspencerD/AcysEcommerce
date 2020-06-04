@@ -97,25 +97,36 @@
                         @guest
                         <a class="dropdown-item" href="{{ route('login') }}">{{ __('Ingresar') }}</a></li>
                         @if (Route::has('register'))
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('register') }}">{{ __('Registrarse') }}</a></li>
+                        <div class="dropdown-divider"></div>
                         @endif
-                        @else
-                        @if(!auth()->user()->admin)
-                        <a class="dropdown-item"
-                            href="{{url('/perfil')}}">{{ Auth::user()->name}}{{Auth::user()->lastname }}</a>
-                        @else
-                        <a class="dropdown-item" href="{{url('/admin/dashboard')}}">{{ Auth::user()->name }}
+                        @endguest
+
+                        @if(Auth::check())
+                        @forelse(Auth::user()->roles as $role)
+
+                        @if($role->name =='Supervisor'|| 'Admin')
+                        <a class="dropdown-item" href="{{url('/dashboard')}}">{{ Auth::user()->name }}
                             {{ Auth::user()->lastname  }}</a>
+                        <div class="dropdown-divider"></div>
                         @endif
+                        @empty
+                        <a class="dropdown-item" href="{{url('/perfil')}}">{{ Auth::user()->name }}
+                            {{ Auth::user()->lastname  }}</a>
+                        <div class="dropdown-divider"></div>
+
+                        @endforelse
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                             {{ __('Cerrar Sesion') }}
                         </a>
-
+                        <div class="dropdown-divider"></div>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
+                            
                         </form>
-                        @endguest
+                        @endif
                     </div>
                 </div>
             </div>

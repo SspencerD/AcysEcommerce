@@ -116,7 +116,7 @@ class PermissionTableSeeder extends Seeder
         $permission = Permission::create([
 
             'name' => 'Listar Usuarios',
-            'slug' => 'user.index',
+            'slug' => 'users.index',
             'description' => 'El usuario puede ver la lista de los Usuarios creados',
         ]);
 
@@ -125,7 +125,7 @@ class PermissionTableSeeder extends Seeder
         $permission = Permission::create([
 
             'name' => 'Ver Usuario',
-            'slug' => 'user.show',
+            'slug' => 'users.show',
             'description' => 'El usuario puede ver los Usuarios creados',
         ]);
 
@@ -134,7 +134,7 @@ class PermissionTableSeeder extends Seeder
         $permission = Permission::create([
 
             'name' => 'Editar Usuarios',
-            'slug' => 'user.edit',
+            'slug' => 'users.edit',
             'description' => 'El usuario puede editar los Usuarios creados',
         ]);
 
@@ -143,13 +143,165 @@ class PermissionTableSeeder extends Seeder
         $permission = Permission::create([
 
             'name' => 'Borrar Usuarios',
-            'slug' => 'user.destroy',
+            'slug' => 'users.destroy',
             'description' => 'El usuario puede borrar los Usuarios creados',
         ]);
 
         $permisson_all[] = $permission->id;
 
+        $permission = Permission::create([
 
+            'name' => 'Ver Dashboard',
+            'slug' => 'dashboard',
+            'description' => 'El usuario puede ver el panel de control',
+        ]);
+
+        $permisson_all[] = $permission->id;
+
+        $permission = Permission::create([
+
+            'name' => 'Listar Productos',
+            'slug' => 'products.index',
+            'description' => 'El usuario puede listar los productos',
+        ]);
+
+        $permisson_all[] = $permission->id;
+
+        $permission = Permission::create([
+
+            'name' => 'Ver Productos',
+            'slug' => 'products.show',
+            'description' => 'El usuario puede ver los productos',
+        ]);
+
+        $permisson_all[] = $permission->id;
+
+        $permission = Permission::create([
+
+            'name' => 'Crear Producto',
+            'slug' => 'products.create',
+            'description' => 'El usuario puede crear productos',
+        ]);
+
+        $permisson_all[] = $permission->id;
+
+        $permission = Permission::create([
+
+            'name' => 'Editar Producto',
+            'slug' => 'products.edit',
+            'description' => 'El usuario puede editar productos',
+        ]);
+
+        $permisson_all[] = $permission->id;
+
+        $permission = Permission::create([
+
+            'name' => 'Borrar Producto',
+            'slug' => 'products.destroy',
+            'description' => 'El usuario puede borrar productos',
+        ]);
+
+        $permisson_all[] = $permission->id;
+
+        $permission = Permission::create([
+
+            'name' => 'Carga masiva productos',
+            'slug' => 'import-list-excel',
+            'description' => 'El usuario puede realizar cargas masivas',
+        ]);
+
+        $permisson_all[] = $permission->id;
+
+        $permission = Permission::create([
+
+            'name' => 'Listar Categorias',
+            'slug' => 'categories.index',
+            'description' => 'El usuario puede listar categorias',
+        ]);
+
+        $permisson_all[] = $permission->id;
+
+        $permission = Permission::create([
+
+            'name' => 'Ver Categorias',
+            'slug' => 'categories.show',
+            'description' => 'El usuario puede ver categorias',
+        ]);
+
+        $permisson_all[] = $permission->id;
+
+        $permission = Permission::create([
+
+            'name' => 'Crear Categorias',
+            'slug' => 'categories.create',
+            'description' => 'El usuario puede crear categorias',
+        ]);
+
+        $permisson_all[] = $permission->id;
+
+        $permission = Permission::create([
+
+            'name' => 'Editar Categorias',
+            'slug' => 'categories.edit',
+            'description' => 'El usuario puede editar categorias',
+        ]);
+
+        $permisson_all[] = $permission->id;
+
+        $permission = Permission::create([
+
+            'name' => 'Borrar Categorias',
+            'slug' => 'categories.destroy',
+            'description' => 'El usuario puede borrar categorias',
+        ]);
+
+        $permisson_all[] = $permission->id;
+
+        /* Noticias */
+        $permission = Permission::create([
+
+            'name' => 'Listar Noticias',
+            'slug' => 'noticies.index',
+            'description' => 'El usuario puede listar noticias',
+        ]);
+
+        $permisson_all[] = $permission->id;
+
+        $permission = Permission::create([
+
+            'name' => 'Ver Noticias',
+            'slug' => 'noticies.show',
+            'description' => 'El usuario puede ver noticias creadas',
+        ]);
+
+        $permisson_all[] = $permission->id;
+
+        $permission = Permission::create([
+
+            'name' => 'Crear Noticias',
+            'slug' => 'noticies.create',
+            'description' => 'El usuario puede crear noticias',
+        ]);
+
+        $permisson_all[] = $permission->id;
+
+        $permission = Permission::create([
+
+            'name' => 'Editar Noticias',
+            'slug' => 'noticies.edit',
+            'description' => 'El usuario puede editar noticias',
+        ]);
+
+        $permisson_all[] = $permission->id;
+
+        $permission = Permission::create([
+
+            'name' => 'Borrar Noticias',
+            'slug' => 'noticies.destroy',
+            'description' => 'El usuario puede borrar noticias',
+        ]);
+
+        $permisson_all[] = $permission->id;
         /* $roladmin->permission()->sync($permisson_all); */
     }
 }

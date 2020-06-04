@@ -19,14 +19,17 @@ class Product extends Model
         'price.min' => 'Es necesario que el precio sea mayor a 0!',
         'price.required' => ' es necesario ponerle precio a tu producto!',
         'purchase_price.min' => 'Es necesario que el precio de compra sea mayor a 0',
-        'purchase_price.required' => 'Es necesario el precio de compra!',
         'category_id.required' => 'Es necesario elegir una categoria',
 
     ];
     public static $rules = [
 
         'name' => 'required |min: 3 ',
-        'description' => 'max:200 '
+        'description' => 'max:200 ',
+        'stock' => 'required|min:1',
+        'price' => 'required|min:1',
+        'purchase_price' =>'|min:1',
+        'category_id'=>'required',
     ];
 
 

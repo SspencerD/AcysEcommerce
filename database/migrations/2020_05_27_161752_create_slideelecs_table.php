@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePaymentPlatformsTable extends Migration
+class CreateSlideelecsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreatePaymentPlatformsTable extends Migration
      */
     public function up()
     {
-        Schema::create('payment_platforms', function (Blueprint $table) {
+        Schema::create('slideelecs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name',50);
-            $table->string('image');
-            
+            $table->string('name');
+            $table->string('description')->nullable();
+            $table->string('image')->nullable();
+
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -29,6 +32,6 @@ class CreatePaymentPlatformsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payment_platforms');
+        Schema::dropIfExists('slideelecs');
     }
 }

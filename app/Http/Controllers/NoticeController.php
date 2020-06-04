@@ -10,15 +10,21 @@ class NoticeController extends Controller
 {
     public function index()
     {
+        $this->authorize('haveaccess', 'noticies.index');
+
         $notices = Notice::paginate();
         return view('noticies.index', compact('notices'));
     }
     public function create()
     {
+        $this->authorize('haveaccess', 'noticies.create');
+
         return view('noticies.create');
     }
     public function store(Request $request)
     {
+        $this->authorize('haveaccess', 'noticies.create');
+
         $this->validate($request, Notice::$rules, Notice::$message);
 
         $notice = Notice::create($request->all());
@@ -41,17 +47,23 @@ class NoticeController extends Controller
     }
     public function show(Notice $notice)
     {
+        $this->authorize('haveaccess', 'noticies.show');
 
         return view('noticies.show')->with(compact('notice'));
     }
 
     public function edit(Notice $notice)
     {
+        $this->authorize('haveaccess', 'noticies.edit');
+
         return view('noticies.edit', compact('notice'));
     }
 
     public function update(Request $request, Notice $notice)
     {
+
+        $this->authorize('haveaccess', 'noticies.edit');
+
         $this->validate($request, Notice::$reglas, Notice::$message);
 
         $notice->update($request->all());
@@ -79,6 +91,8 @@ class NoticeController extends Controller
     }
     public function destroy(Notice $notice)
     {
+        $this->authorize('haveaccess', 'noticies.destroy');
+
         $notice->delete();
 
         return redirect()->route('news')

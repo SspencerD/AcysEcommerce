@@ -47,7 +47,7 @@ class WebPayService
         $order->user_id = Auth::user()->id;
         $order->amount = $request->value;
         $order->status = 'pending';
-        $order->payment_platform_id = 5;
+        $order->payment_platform_id = 1;
         $order->cart_id = auth()->user()->cart->id;
         $order->save();
 
@@ -148,7 +148,9 @@ class WebPayService
             $message = 'Tu orden ha sido completada con éxito.';
             $type = 'success';
 
-            Mail::to(Auth::user()->email)->send(new NewOrder(Auth::user(), Auth::user()->cart));
+            $cart_paid = Cart::where('user_id', Auth::user()->id)->where('status', 'paid')->latest()->first()`;
+
+            Mail::to(Auth::user()->email)->send(new NewOrder(Auth::user(), $cart_paid));
         }
          
         return redirect()->route('perfil')->with($type, $message);

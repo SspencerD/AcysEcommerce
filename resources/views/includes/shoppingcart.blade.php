@@ -14,7 +14,7 @@
                 <div class="product-body">
                     <h3 class="product-name">
                         <a href="{{route('products.show',$detail->product->id)}}">{{ $detail->product->name }}</a></h3>
-                    <h4 class="product-price">{{ number_format($detail->product->price,2) }} <span class="qty">x
+                    <h4 class="product-price">$ {{ number_format($detail->product->price,2) }} <span class="qty">x
                             {{ $detail->quantity}}</span></h4>
                     @php
                     $total = number_format($detail->product->price*$detail->quantity ,2)

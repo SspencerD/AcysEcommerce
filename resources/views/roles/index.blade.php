@@ -58,7 +58,7 @@
 
 
                                         <form action=" {{ route('roles.destroy', $role->id) }}" method="POST">
-                                            @csrf
+                                            @csrf @method('DELETE')
                                             <button class="dropdown-item btn btn-danger" type="submit"><i
                                                     class="fas fa-trash"></i>
                                                 Borrar</button>

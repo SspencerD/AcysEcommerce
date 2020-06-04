@@ -57,12 +57,12 @@
                 </div>
                 <div>
                     <h3 class="product-price">
-                        ${{ $product->price }}{{--  <del class="product-old-price">$990.00</del>--}}</h3>
+                        ${{ number_format($product->price,2) }}{{--  <del class="product-old-price">$990.00</del>--}}</h3>
                     @if($product->stock != 0)
-                    <span class="product-available badge badge-success">En Stock</span>
+                    <span class=" badge badge-success">En Stock</span>
                     <p>{{$product->stock}} disponible</p>
                     @else
-                    <span class="product-available badge badge-danger">Sin Stock</span>
+                    <span class=" badge badge-danger">Sin Stock</span>
                     @endif
                 </div>
                 <p>{{$product->description}}</p>

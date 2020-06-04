@@ -175,11 +175,8 @@
                     </table>
                     <p><strong>Total de la compra:</strong>{{ auth()->user()->cart->total }}</p>
 
-                    <form action="{{route('order.update')}}" method="post">
-                        @csrf
-                        <button class="btn btn-warning btn-lg btn-rnd text-center" type="submit"><i
-                                class="fas fa-cart-arrow-down"></i> Realizar compra</button>
-                    </form>
+                    <a href="{{ route('payments') }}" class="btn btn-warning btn-lg btn-rnd text-center"><i
+                        class="fas fa-cart-arrow-down"></i> Realizar compra</a>
                 </div>
                 <div class="tab-pane active" id="pedido">
                     <div class="row">

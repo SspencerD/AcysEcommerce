@@ -24,7 +24,7 @@
     } */
 </style>
 @endsection
-@include('includes.menu')
+@include('includes.menu1')
 
 @include('includes.flash-messages')
 <!-- SECTION -->

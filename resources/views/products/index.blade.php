@@ -18,12 +18,7 @@
     <div class="form-group-sm" class="float-right">
         <form action="{{ route('products.imports.excel') }}" method="post" enctype="multipart/form-data">
             @csrf
-
-            @if(Session::has('info'))
-
-            <p>{{ Session::get('info') }}</p>
-            @endif
-
+            
             <input type="file" name="file" class=" btn btn-success">
 
             <button class=" btn btn-success bt-lg"><i
@@ -62,10 +57,10 @@
                             <th>{{ $product->provider }}</th>
                             <th>{{ $product->provider_code }}</th>
                             <th>{{ $product->lote }}</th>
-                            <th> $ {{ $product->price }}</th>
-                            <th> $ {{ $product->purchase_price }}</th>
+                            <th> $ {{number_format($product->price,2) }}</th>
+                            <th> $ {{ number_format($product->purchase_price,2) }}</th>
                             <th>{{ $product->category_name }}</th>
-                            <th>{{ $product->description }}</th>
+                            <th>{{(Str::limit($product->description ,23)) }}</th>
                             <th>
                                 <div class="dropdown">
                                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"

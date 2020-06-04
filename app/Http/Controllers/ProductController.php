@@ -6,6 +6,9 @@ use App\Category;
 use App\Product;
 use App\ProductImage;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+
+use App\Imports\ProductImport;
 
 class ProductController extends Controller
 {
@@ -17,6 +20,7 @@ class ProductController extends Controller
 
     public function index()
     {
+        $this->authorize('haveaccess', 'products.index');
         $products = Product::paginate();
 
         return view('products\index', compact('products'));
@@ -29,6 +33,8 @@ class ProductController extends Controller
      */
     public function create()
     {
+        $this->authorize('haveaccess', 'products.create');
+
         $categories = Category::all();
 
         return view('products.create')->with(compact('categories'));
@@ -42,6 +48,10 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('haveaccess', 'products.create');
+
+        $this->validate($request, Product::$rules, Product::$message);
+
         $product = Product::create($request->all());
         $product->save();
 
@@ -51,6 +61,8 @@ class ProductController extends Controller
     public function show(Product $product)
 
     {
+        $this->authorize('haveaccess', 'products.show');
+
         $images = $product->images()->get();
         return view('products.show')->with(compact('product', 'images'));
     }
@@ -58,12 +70,17 @@ class ProductController extends Controller
     public function edit(Product $product)
 
     {
+        $this->authorize('haveaccess', 'products.edit');
+
         $categories = Category::all();
         return view('products.edit', compact('product', 'categories'));
     }
 
     public function update(Request $request, Product $product)
     {
+        $this->authorize('haveaccess', 'products.edit');
+
+        $this->validate($request, Product::$rules, Product::$message);
         $product->update($request->all());
 
         return redirect()->route('products.index')
@@ -72,6 +89,7 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
+        $this->authorize('haveaccess', 'products.destroy');
 
         try {
             /*  */
@@ -84,5 +102,15 @@ class ProductController extends Controller
         }
  
         return back()->with('info', 'Producto borrado con exito');
+    }
+    public function importExcel(Request $request)
+    {
+        $this->authorize('haveaccess', 'import-list-excel');
+
+        $file = $request->file('file');
+        Excel::import(new ProductImport, $file);
+
+        return back()->with('info','Importación de producto completo');
+
     }
 }

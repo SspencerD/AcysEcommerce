@@ -1,36 +1,19 @@
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
-        <div class="item active">
-            <img src="{{ url('/img/product01.png')}}" alt="Images">
+        @foreach($slides as $slider)
+        <div class="item @if($loop->first) active @endif">
+            
+            <img src="{{$slider->featured_image_url }}" alt="Images">
             <div class="carousel-caption">
-                <h3>Los Angeles</h3>
-                <p>LA is always so much fun!</p>
+                <h3>{{ $slider->name }}</h3>
+                <p>{{ $slider->description }}</p>
             </div>
+           
         </div>
-
-        <div class="item">
-            <img src="{{ url('/img/product05.png')}}" alt="Imageso">
-            <div class="carousel-caption">
-                <h3>Chicago</h3>
-                <p>Thank you, Chicago!</p>
-            </div>
-        </div>
-
-        <div class="item">
-            <img src="{{ url('/img/product03.png')}}" alt="Imagesrk">
-            <div class="carousel-caption">
-                <h3>New York</h3>
-                <p>We love the Big Apple!</p>
-            </div>
-        </div>
+         @endforeach
     </div>
 
     <!-- Left and right controls -->

@@ -10,4 +10,10 @@ class PaymentPlatform extends Model
         'name','image',
 
     ];
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
+
 }

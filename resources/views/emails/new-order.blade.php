@@ -25,7 +25,7 @@
                 </li>
     </ul>
     <p>
-    <a href="{{ url('/orders/'.$cart->id) }}">haz clic aquí</a> Para ver más información sobre este pedido.
+    <a href="{{ url('/orders/'.$cart->order_id ) }}">haz clic aquí</a> Para ver más información sobre este pedido.
     </p>
 
     <!-- Optional JavaScript -->

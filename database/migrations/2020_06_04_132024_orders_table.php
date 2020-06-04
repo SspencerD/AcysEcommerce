@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOrdersTable extends Migration
+class OrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -19,14 +19,18 @@ class CreateOrdersTable extends Migration
             $table->string('token_webpay')->nullable();
             $table->integer('user_id');
             $table->float('amount');
-            $table->enum('status', ['pending', 'cancelled', 'completed']);	
-            $table->integer('payment_platform_id');
+            $table->enum('status', ['pending', 'cancelled', 'completed']);
+            
+            $table->unsignedBigInteger('payment_platform_id')->unsigned();
+            $table->foreign('payment_platform_id')->references('id')->on('payment_platforms');
+
 
             $table->bigInteger("cart_id")->nullable();
 
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.

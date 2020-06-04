@@ -4,17 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Cart;
 use App\CartDetail;
-use App\Currency;
+use App\Currency; 
 use App\PaymentPlatform;
 use App\Resolvers\PaymentPlatformResolver;
-use App\Services\PayPalService;
-use App\Services\WebPayService;
 use App\User;
 use Carbon\Carbon;
 use App\Product;
 use App\WebPay;
 use Illuminate\Http\Request;
-use PSTPagoFacil\SignatureHelper;
 use Illuminate\Support\Facades\Log;
 
 
@@ -57,6 +54,8 @@ class PaymentController extends Controller
         $totalIva = $total + $iva;
         
         //dd($total, $totalIva);
+        \Session::flash('success','Tenemos listo tu carrito! ,te enviaremos un mail con los detalles. Seras redirigido a la pagina de pago');
+
         return view('payments')->with([
             'totalProducts' => round($total), 
             'totalIva' => round($totalIva),
@@ -128,3 +127,4 @@ class PaymentController extends Controller
 }
 
 
+{{  }}
