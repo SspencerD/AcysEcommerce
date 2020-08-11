@@ -53,12 +53,12 @@ class CategoryController extends Controller
     }
     public function show(Category $category)
     {
-        
+
         $this->authorize('haveaccess', 'categories.show');
 
         $products = $category->products()->paginate(10);
 
-        return view('categories\show', compact('category', 'products'));
+        return view('categories.show', compact('category', 'products'));
     }
     public function edit(Category $category)
     {

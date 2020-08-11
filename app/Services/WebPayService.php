@@ -136,8 +136,8 @@ class WebPayService
         $type = null;
 
         if ($order->stauts == 'pending') {
-            $message = 'Tu orden sigue en estado de pendiente, 
-                por lo que entedemos que has abandonado el proceso 
+            $message = 'Tu orden sigue en estado de pendiente,
+                por lo que entedemos que has abandonado el proceso
                 de pago o el pago aún está en proceso para ser completado.';
 
             $type = 'info';
@@ -148,7 +148,7 @@ class WebPayService
             $message = 'Tu orden ha sido completada con éxito.';
             $type = 'success';
 
-            $cart_paid = Cart::where('user_id', Auth::user()->id)->where('status', 'paid')->latest()->first()`;
+            $cart_paid = Cart::where('user_id', Auth::user()->id)->where('status', 'paid')->latest()->first();
 
             Mail::to(Auth::user()->email)->send(new NewOrder(Auth::user(), $cart_paid));
         }

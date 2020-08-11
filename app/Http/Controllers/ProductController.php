@@ -23,7 +23,7 @@ class ProductController extends Controller
         $this->authorize('haveaccess', 'products.index');
         $products = Product::paginate();
 
-        return view('products\index', compact('products'));
+        return view('products.index', compact('products'));
     }
 
     /**
@@ -97,10 +97,10 @@ class ProductController extends Controller
 
         } catch (\Illuminate\Database\QueryException $e) {
             dd($e);
-            
+
 
         }
- 
+
         return back()->with('info', 'Producto borrado con exito');
     }
     public function importExcel(Request $request)
